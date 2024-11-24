@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Stock AI Images{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block content %}
+    <!-- Main Body Section for Image Categories -->
+    <div class="container">
+        <h1>Image Categories</h1>
+        <div class="category-grid">
+    {% for category in ["abstract", "nature", "technology", "people", "architecture", "art_design", "business", "fashion", "food_drink", "vehicles", "home_decor", "animated", "sports", "world", "history", "finance", "miscellaneous"] %}
+        <div class="category-box">
+            <h2>{{ category.replace('_', ' ').title() }}</h2>
+            <img src="{{ url_for('static', filename='uploads/index_images/' + category + '.webp') }}" alt="{{ category.title() }} Image" class="category-image">
+            <a href="{{ url_for('category_page', category_name=category) }}" class="buy-button">Select</a>
+        </div>
+    {% endfor %}
+</div>
+
+    </div>
+    
+
+    
+{% endblock %}

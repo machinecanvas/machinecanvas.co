@@ -1,0 +1,137 @@
+/* Main Checkout Container */
+.checkout-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+/* Cart Items Summary Section */
+.cart-items-summary {
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+}
+
+.cart-items-table-container {
+    overflow-x: auto;
+}
+
+/* Cart Items Table */
+.cart-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.cart-items-table th,
+.cart-items-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #444;
+}
+
+.cart-items-table th {
+    background-color: #444;
+    color: #ffffff;
+}
+
+.cart-items-table td img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.total-amount {
+    text-align: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00ff00;
+}
+
+/* Payment Section */
+.payment-section {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.payment-section h2 {
+    color: black; /* Sets the text color to black */
+    font-size: 1.8rem; /* Optional: Adjust font size if needed */
+    margin-bottom: 1rem; /* Optional: Add spacing below */
+}
+
+/* Payment Buttons Section */
+.payment-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pay-button {
+    padding: 1rem 2rem;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.pay-button:hover {
+    background-color: #0056b3;
+}
+
+#paypal-button-container {
+    display: block
+}
+
+/* payment icons */
+
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 1rem;
+}
+
+.payment-icon {
+    height: 40px; /* Standard height for consistency */
+    width: auto; /* Maintain aspect ratio */
+    transition: transform 0.2s ease-in-out;
+}
+
+.payment-icon:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 1rem;
+    }
+
+    .payment-buttons {
+        flex-direction: column;
+    }
+
+    .pay-button {
+        width: 100%;
+    }
+}
+
+
+
+
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Subscription</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <!-- Include navigation and cart icon if needed -->
+    </header>
+    
+    <main>
+        <h1>Manage Your Subscription</h1>
+
+        {% if subscription %}
+            <section class="current-subscription">
+                <h2>Current Plan: {{ subscription.plan_name }}</h2>
+                <p><strong>Price:</strong> ${{ subscription.price }}</p>
+                <p><strong>Credits Remaining:</strong> {{ subscription.credits_remaining }}</p>
+                <p><strong>Upload Limit:</strong> {{ subscription.upload_limit }}</p>
+                
+                <form method="POST">
+                    <input type="hidden" name="action" value="cancel">
+                    <button type="submit" class="btn btn-danger">Cancel Subscription</button>
+                </form>
+            </section>
+
+            <section class="change-subscription">
+                <h2>Change Subscription Plan</h2>
+                <form method="POST">
+                    <input type="hidden" name="action" value="change_plan">
+                    <label for="new_plan_id">Choose a new plan:</label>
+                    <select name="new_plan_id" id="new_plan_id" required>
+                        <option value="">Select a new plan</option>
+                        {% for plan in available_plans %}
+                            <option value="{{ plan.id }}">{{ plan.plan_name }} - ${{ plan.price }}/month</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary">Change Plan</button>
+                </form>
+            </section>
+        {% else %}
+            <section class="no-subscription">
+                <p>You do not have an active subscription. Please select a plan to subscribe.</p>
+                <a href="{{ url_for('pricing') }}" class="btn btn-success">Go to Pricing</a>
+            </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Stock AI Images. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Function to fetch the cart count and update the cart icon
+        function updateCartCount() {
+            fetch('/cart_count')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.cart_count !== undefined) {
+                        const cartCountElement = document.querySelector('.cart-count');
+                        if (cartCountElement) {
+                            cartCountElement.textContent = data.cart_count;
+                        }
+                    }
+                })
+                .catch(error => console.error('Error fetching cart count:', error));
+        }
+
+        // Call the function on page load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>
+

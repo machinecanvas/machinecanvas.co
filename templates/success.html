@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success - Stock AI Images</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='success.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='uploads/index_images/MACHINE.png') }}" alt="Machine Canvas Logo">
+            </a>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Payment Successful!</h1>
+        <p>{{ message }}</p>
+        <a href="/" class="return-home">Return to Home</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Stock AI Images. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

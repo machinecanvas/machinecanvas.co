@@ -1,0 +1,380 @@
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    color: white;
+}
+
+/* Header styling */
+header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 150px;
+    height: auto;
+}
+
+.cart-icon, .welcome-message {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Navbar styling */
+nav {
+    background-color: #444;
+    width: 100%;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navbar li {
+    padding: 15px 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.navbar a:hover {
+    background-color: #555;
+    transition: background-color 0.3s ease;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.navbar .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    border-radius: 6px;
+}
+
+/* Grid layout for image containers */
+.category-grid, .index-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* General styling for main image containers */
+.category-box, .index-box {
+    background-color: #001f3f;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Styling for images inside main containers */
+.category-image, .index-image {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover effect for main image */
+.category-image:hover {
+    transform: scale(1.05);
+    border: 2px solid black;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Image details for side-by-side, continuous scrolling text on hover */
+.image-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 8px 0;
+    font-size: 16px;
+    color: #aaa;
+}
+
+/* Set up the scrolling container */
+.image-details div {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between text items */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Trigger the scroll effect on hover of .category-box */
+.category-box:hover .image-details div {
+    animation: scroll-text 10s linear infinite;
+}
+
+/* Keyframe animation for the scrolling text effect */
+@keyframes scroll-text {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+/* Style individual text elements in .image-details */
+.image-details p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+
+/* Save Icon - Positioned bottom-left */
+.save-icon {
+    position: absolute;
+    bottom: 10px; /* Bottom spacing */
+    left: 10px;  /* Left corner */
+    background-color: rgba(255, 255, 255, 0.8); /* Slight background for visibility */
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    font-size: 1.2em;
+    color: #ff4b4b; /* Icon color */
+    cursor: pointer;
+    z-index: 10; /* Ensures it appears above the image */
+    transition: background-color 0.3s ease;
+}
+
+.save-icon:hover {
+    background-color: rgba(255, 255, 255, 1); /* Highlight on hover */
+}
+
+/* Download Icon - Positioned bottom-right */
+.download-icon {
+    position: absolute;
+    bottom: 10px; /* Bottom spacing */
+    right: 10px; /* Right corner */
+    background-color: rgba(255, 255, 255, 0.8); /* Slight background for visibility */
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    font-size: 1.2em;
+    color: #3085d6; /* Icon color */
+    cursor: pointer;
+    z-index: 10; /* Ensures it appears above the image */
+    transition: background-color 0.3s ease;
+}
+
+.download-icon:hover {
+    background-color: rgba(255, 255, 255, 1); /* Highlight on hover */
+}
+
+/* Adjusted image styling to ensure it doesn’t interfere with the icons */
+.image-container {
+    position: relative; /* Allows absolute positioning of icons */
+}
+
+.category-image {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+
+/* Hover effect for the image */
+.image-container:hover .category-image {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Styling for the buy button */
+.image-details .buy-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 8px;
+    transition: background-color 0.3s ease;
+    width: fit-content;
+}
+
+.image-details .buy-button:hover {
+    background-color: #0056b3;
+}
+
+.dummy-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    height: 300px;
+    color: #888;
+    font-size: 1.2em;
+    text-align: center;
+    transition: all 0.3s ease;  /* Add transition for a smooth change */
+}
+
+
+.awaiting-image-text p {
+    font-weight: bold;
+    color: #bbb;
+    margin: 0;
+}
+
+/* Disable right-click and text selection on images */
+.category-image {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Modal Background */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's above all other elements */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease;
+}
+
+/* Show modal when active */
+.modal.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #ffffff; /* White background */
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px; /* Set maximum width */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Modal Header */
+.modal-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Modal Form Labels */
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    text-align: left;
+    color: #555;
+}
+
+/* Modal Form Inputs */
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+}
+
+/* Submit Button */
+.modal-content .submit-button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3085d6;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content .submit-button:hover {
+    background-color: #2872b5;
+    transform: scale(1.05);
+}
+
+/* Close Button */
+.modal-content .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #555;
+}
+
+.modal-content .close-button:hover {
+    color: #000;
+}
+
+
+/* Footer styling */
+footer {
+    background-color: #001f3f;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: auto;
+}
+
+/* Mobile responsiveness */
+    @media (max-width: 768px) {
+    .category-grid, .index-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

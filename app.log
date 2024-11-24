@@ -1,0 +1,989 @@
+2024-11-22 21:55:25,542 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-22 21:55:25,543 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-22 21:55:32,142 - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\app.py", line 169, in home
+    return render_template('index.html', email=session.get('email'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 1084, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 1013, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 972, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+2024-11-22 21:55:32,168 - INFO - 127.0.0.1 - - [22/Nov/2024 21:55:32] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2024-11-22 22:11:49,977 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-22 22:11:49,978 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-22 22:11:54,264 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "GET / HTTP/1.1" 200 -
+2024-11-22 22:11:54,289 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,291 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,292 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,487 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,493 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,493 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,494 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,498 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,500 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,507 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,509 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,512 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,515 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,520 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,523 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,527 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,529 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,531 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,536 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "[33mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:11:54,561 - INFO - 127.0.0.1 - - [22/Nov/2024 22:11:54] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:20:26,535 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-22 22:20:26,536 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-22 22:20:30,575 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "GET / HTTP/1.1" 200 -
+2024-11-22 22:20:30,593 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,596 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,596 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,767 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,767 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,769 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,773 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,773 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,773 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,780 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,782 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,788 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,790 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,792 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,795 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,799 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,800 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,804 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,805 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "[33mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 404 -
+2024-11-22 22:20:30,843 - INFO - 127.0.0.1 - - [22/Nov/2024 22:20:30] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:28:57,726 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-22 22:28:57,727 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-22 22:29:00,997 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:00] "GET / HTTP/1.1" 200 -
+2024-11-22 22:29:01,103 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/abstract.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,103 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/styles.css HTTP/1.1" 200 -
+2024-11-22 22:29:01,155 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/MACHINE.png HTTP/1.1" 200 -
+2024-11-22 22:29:01,231 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/nature.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,231 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/technology.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,232 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/people.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,239 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/art_design.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,242 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/architecture.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,242 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/business.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,264 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/food_drink.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,264 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/fashion.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,266 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/vehicles.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,276 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/animated.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,278 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/home_decor.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,283 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/sports.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,295 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/world.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,307 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/finance.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,308 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/history.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,308 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /static/uploads/index_images/miscellaneous.webp HTTP/1.1" 200 -
+2024-11-22 22:29:01,353 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:01] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:06,184 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:06] "GET /cart HTTP/1.1" 200 -
+2024-11-22 22:29:06,203 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:29:06,205 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:06] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:29:06,217 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:06] "GET /static/cart.css HTTP/1.1" 200 -
+2024-11-22 22:29:06,222 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:06] "GET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1" 200 -
+2024-11-22 22:29:06,326 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:06] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:06,329 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:06] "GET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1" 200 -
+2024-11-22 22:29:06,329 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:06] "GET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1" 200 -
+2024-11-22 22:29:08,339 - INFO - PayPal Client ID: <YOUR_PAYPAL_CLIENT_ID>
+2024-11-22 22:29:08,438 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "GET /checkout HTTP/1.1" 200 -
+2024-11-22 22:29:08,471 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:29:08,472 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:29:08,474 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:08,479 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "GET /static/checkout.css HTTP/1.1" 200 -
+2024-11-22 22:29:08,568 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:08,570 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:08,581 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "GET /static/uploads/index_images/visa%20logo.png HTTP/1.1" 200 -
+2024-11-22 22:29:08,584 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "GET /static/uploads/index_images/paypal-mark-color.svg HTTP/1.1" 200 -
+2024-11-22 22:29:08,586 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "GET /static/uploads/index_images/AMEX-web-tile.jpg HTTP/1.1" 200 -
+2024-11-22 22:29:08,591 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "GET /static/uploads/index_images/mastercard%20logo.svg HTTP/1.1" 200 -
+2024-11-22 22:29:08,828 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:08] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:17,413 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "GET /category/abstract HTTP/1.1" 200 -
+2024-11-22 22:29:17,433 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:29:17,435 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:29:17,444 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:17,444 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "GET /static/category.css HTTP/1.1" 200 -
+2024-11-22 22:29:17,555 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:17,556 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:17,558 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "GET /static/uploads/abstract/DALLE_2024-10-23_13.06.39_-_A_vibrant_abstract_painting_featuring_bold_swirling_colors_in_red_blue_and_yellow._The_shapes_are_fluid_and_dynamic_creating_a_sense_of_movement_a.webp HTTP/1.1" 200 -
+2024-11-22 22:29:17,579 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:17,585 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:17] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:21,150 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:21] "GET /upload HTTP/1.1" 200 -
+2024-11-22 22:29:21,174 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:29:21,176 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:21] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:29:21,183 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:21] "GET /static/upload.css HTTP/1.1" 200 -
+2024-11-22 22:29:21,290 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:21] "GET /upload HTTP/1.1" 200 -
+2024-11-22 22:29:21,303 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:21] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:21,307 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:21] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:29,208 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "GET /pricing HTTP/1.1" 200 -
+2024-11-22 22:29:29,221 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:29:29,226 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:29:29,234 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "GET /static/pricing.css HTTP/1.1" 200 -
+2024-11-22 22:29:29,237 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "GET /static/uploads/index_images/basic.webp HTTP/1.1" 200 -
+2024-11-22 22:29:29,304 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "GET /static/uploads/index_images/pro.webp HTTP/1.1" 200 -
+2024-11-22 22:29:29,309 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "GET /static/uploads/index_images/credits.webp HTTP/1.1" 200 -
+2024-11-22 22:29:29,316 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:29,323 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:29,360 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:29] "GET /static/uploads/index_images/premium.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,289 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /profile/my-images HTTP/1.1" 200 -
+2024-11-22 22:29:36,308 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:29:36,310 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:29:36,319 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/my_images.css HTTP/1.1" 200 -
+2024-11-22 22:29:36,320 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/nature/DALLE_2024-10-16_13.40.08_-_A_representative_image_for_the_Nature_category_featuring_lush_green_leaves_and_trees_in_a_peaceful_forested_setting_with_sunlight_filtering_throug.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,387 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:36,388 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:36,389 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:36,391 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "[36mGET /static/uploads/abstract/DALLE_2024-10-23_13.06.39_-_A_vibrant_abstract_painting_featuring_bold_swirling_colors_in_red_blue_and_yellow._The_shapes_are_fluid_and_dynamic_creating_a_sense_of_movement_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:29:36,403 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/nature/DALLE_2024-10-23_11.56.34_-_A_dense_tropical_jungle_with_thick_vibrant_greenery_tall_palm_trees_and_vines_hanging_from_the_canopy._The_air_is_humid_and_there_are_bright_exot.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,407 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/nature/DALLE_2024-10-23_11.56.10_-_A_peaceful_forest_scene_with_sunlight_streaming_through_tall_trees_casting_shadows_on_the_forest_floor_covered_with_green_moss_and_fallen_leaves._The.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,411 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/nature/DALLE_2024-10-23_11.56.20_-_A_mountain_landscape_with_a_clear_blue_sky_rugged_peaks_dusted_with_snow_and_a_crystal-clear_lake_reflecting_the_surrounding_scenery._The_foreground.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,413 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/nature/DALLE_2024-10-23_11.56.38_-_A_serene_beach_scene_with_soft_golden_sand_gentle_ocean_waves_lapping_the_shore_and_a_clear_horizon_where_the_water_meets_the_sky._A_few_seashells_a.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,423 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/animals/DALLE_2024-10-23_12.55.27_-_A_playful_dolphin_jumping_out_of_the_water_in_the_ocean_its_sleek_body_glistening_in_the_sunlight._The_background_features_gentle_waves_and_a_clear_b.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,425 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/technology/DALLE_2024-10-23_13.00.13_-_A_close-up_of_a_modern_smartphone_with_a_holographic_display_projecting_data_and_apps_in_3D._The_phone_is_resting_on_a_sleek_table_and_the_background.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,432 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/animals/DALLE_2024-10-23_12.55.18_-_A_majestic_lion_standing_on_a_rock_in_the_savannah_its_golden_mane_blowing_in_the_wind._The_background_shows_a_vast_open_plain_with_a_few_acacia_tree.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,437 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/people/DALLE_2024-10-23_13.02.14_-_A_portrait_of_a_young_woman_sitting_in_a_cozy_cafe_smiling_and_looking_out_the_window._She_has_long_wavy_hair_and_is_wearing_casual_clothes_with_a_w.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,438 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/technology/DALLE_2024-10-23_13.00.08_-_A_futuristic_cityscape_with_towering_skyscrapers_made_of_glass_and_steel_advanced_transportation_systems_including_flying_cars_and_bright_holographi.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,443 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/animals/DALLE_2024-10-23_12.55.37_-_A_graceful_bald_eagle_soaring_high_in_the_sky_its_wings_fully_extended_and_sharp_eyes_focused_below._The_background_features_a_clear_blue_sky_with_so.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,456 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/technology/DALLE_2024-10-23_13.00.10_-_A_sleek_modern_robotic_arm_working_in_a_factory_assembling_electronic_components_with_precision._The_background_shows_a_high-tech_manufacturing_floo.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,463 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/technology/DALLE_2024-10-23_13.00.16_-_A_high-tech_data_center_with_rows_of_illuminated_server_racks_cables_and_cooling_systems._The_servers_are_organized_in_a_sleek_futuristic_design_wi.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,465 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/people/DALLE_2024-10-23_13.02.19_-_A_group_of_friends_sitting_around_a_campfire_at_night_laughing_and_enjoying_each_others_company._The_warm_glow_of_the_fire_illuminates_their_faces_.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,465 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:29:36,471 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/people/DALLE_2024-10-23_13.02.16_-_A_businessman_standing_in_a_modern_office_holding_a_tablet_and_smiling_confidently._He_is_dressed_in_a_sharp_suit_and_the_background_shows_large_win.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,476 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/architecture/DALLE_2024-10-23_13.04.05_-_A_stunning_modern_skyscraper_with_a_sleek_glass_facade_towering_over_the_city._The_building_features_sharp_angles_and_a_reflective_surface_blending_.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,479 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/animals/DALLE_2024-10-23_12.55.31_-_A_close-up_of_a_curious_red_panda_climbing_a_tree_branch_its_soft_fur_and_striped_tail_visible._The_scene_is_set_in_a_lush_forest_with_leaves_and_bra.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,480 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/people/DALLE_2024-10-23_13.02.22_-_A_young_couple_walking_hand-in-hand_through_a_city_park_during_autumn_with_colorful_leaves_falling_around_them._They_are_bundled_up_in_warm_coats_an.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,482 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/architecture/DALLE_2024-10-23_13.04.09_-_An_ancient_Roman_amphitheater_with_massive_stone_arches_and_weathered_columns._The_structure_is_partially_in_ruins_but_the_grand_architecture_still_s.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,485 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/architecture/DALLE_2024-10-23_13.04.17_-_A_traditional_Japanese_temple_surrounded_by_lush_gardens._The_temple_features_ornate_wooden_architecture_with_curved_tiled_roofs_and_the_peaceful_en.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,487 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/architecture/DALLE_2024-10-23_13.04.27_-_A_gothic_cathedral_with_towering_spires_intricate_stained_glass_windows_and_flying_buttresses._The_stone_facade_is_adorned_with_detailed_carvings_a.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,504 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/art_design/DALLE_2024-10-23_13.06.44_-_A_detailed_pencil_sketch_of_a_human_face_with_intricate_shading_showing_a_range_of_emotions._The_sketch_is_realistic_with_fine_lines_emphasizing_the.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,507 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/art_design/DALLE_2024-10-23_13.06.46_-_An_elegant_digital_illustration_of_a_fashion_design_featuring_a_chic_evening_gown._The_gown_is_sleek_and_modern_with_flowing_fabric_and_intricate_pa.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,516 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/business/DALLE_2024-10-23_13.12.37_-_A_business_meeting_room_with_executives_gathered_around_a_large_table_reviewing_documents_and_discussing_a_strategy._The_room_has_a_professional_atmo_1.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,518 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/business/DALLE_2024-10-23_13.12.31_-_A_busy_office_with_professionals_working_at_their_desks_using_computers_and_discussing_projects._The_office_features_modern_design_with_glass_partiti.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,519 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/art_design/DALLE_2024-10-23_13.07.53_-_A_creative_workspace_filled_with_art_supplies_sketches_and_a_half-finished_painting_on_an_easel._The_room_has_a_cozy_artistic_vibe_with_brushes_pa.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,528 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/art_design/DALLE_2024-10-23_13.08.06_-_A_large_public_mural_on_a_city_wall_featuring_vibrant_colors_and_abstract_shapes_that_blend_into_each_other._The_mural_is_surrounded_by_an_urban_land.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,528 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/fashion/DALLE_2024-10-23_22.17.49_-_A_stylish_fashion_photoshoot_in_an_urban_setting_featuring_a_model_wearing_high-fashion_clothing_with_modern_chic_accessories._The_setting_includes_.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,534 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/business/DALLE_2024-10-23_22.15.49_-_A_professional_modern_office_environment_with_sleek_desks_laptops_and_city_skyline_view_through_large_windows_representing_a_business_workspace._T.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,534 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/fashion/DALLE_2024-10-23_22.17.54_-_A_high-end_fashion_runway_show_with_models_wearing_bold_and_elegant_designer_outfits_walking_confidently_down_the_runway._The_scene_features_dramatic.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,548 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/fashion/DALLE_2024-10-23_22.18.03_-_A_casual_streetwear_fashion_scene_featuring_models_walking_along_a_trendy_neighborhood_with_contemporary_urban_outfits._The_clothing_includes_stylish.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,551 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/food_drink/DALLE_2024-10-23_22.22.04_-_A_close-up_of_a_gourmet_plate_of_food_in_a_high-end_restaurant_featuring_a_carefully_arranged_dish_with_vibrant_colors_garnished_with_microgreens_an.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,552 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/fashion/DALLE_2024-10-23_22.17.58_-_A_glamorous_fashion_editorial_photoshoot_set_in_an_elegant_indoor_space_featuring_a_model_dressed_in_avant-garde_designer_attire_with_bold_colors_an.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,554 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/food_drink/DALLE_2024-10-23_22.22.07_-_A_vibrant_smoothie_bowl_with_fresh_fruits_seeds_and_colorful_toppings_set_on_a_rustic_wooden_table_in_a_cozy_cafe_environment.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,556 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/food_drink/DALLE_2024-10-23_22.22.09_-_A_table_set_with_various_colorful_cocktails_featuring_fruit_garnishes_and_served_in_elegant_glassware_with_a_lively_bar_setting_in_the_background.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,559 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/food_drink/DALLE_2024-10-23_22.22.12_-_A_platter_of_assorted_sushi_rolls_elegantly_presented_on_a_dark_slate_plate_with_chopsticks_and_soy_sauce_on_the_side_in_a_modern_Japanese_restauran.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,595 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/vehicles/DALLE_2024-10-23_22.26.07_-_A_rugged_off-road_SUV_in_a_desert_landscape_climbing_over_rocky_terrain_with_dust_in_the_air.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,603 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/vehicles/DALLE_2024-10-23_22.26.02_-_A_sleek_sports_car_on_a_highway_with_a_modern_city_skyline_in_the_background_showing_speed_and_elegance.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,608 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/vehicles/DALLE_2024-10-23_22.26.17_-_A_luxury_yacht_sailing_on_a_calm_ocean_during_sunset_with_a_sleek_design_and_modern_features.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,609 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/vehicles/DALLE_2024-10-23_22.26.10_-_A_futuristic_electric_motorcycle_in_a_sleek_urban_environment_showcasing_modern_design_and_technology.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,610 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/animated/DALLE_2024-10-23_22.28.36_-_A_colorful_animated_scene_featuring_a_futuristic_cityscape_with_flying_cars_and_robots_in_a_vibrant_and_lively_environment.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,610 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/animated/DALLE_2024-10-23_22.28.40_-_An_animated_woodland_scene_with_cute_animals_and_bright_vivid_colors_set_in_a_magical_forest_with_glowing_plants_and_trees.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,611 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/animated/DALLE_2024-10-23_22.36.17_-_A_vibrant_animated_fantasy_landscape_featuring_floating_islands_waterfalls_and_magical_creatures_flying_in_the_sky_with_a_colorful_sunset_in_the_ba.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,660 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/home_decor/DALLE_2024-10-23_23.02.19_-_A_modern_living_room_with_stylish_furniture_featuring_a_sleek_sofa_coffee_table_and_elegant_lighting_fixtures_with_tasteful_decor_accents_like_pla.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,663 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/home_decor/DALLE_2024-10-23_23.02.23_-_A_cozy_bedroom_decorated_in_a_minimalist_style_featuring_a_comfortable_bed_with_soft_bedding_a_small_bedside_table_with_a_lamp_and_framed_artwork_o.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,663 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/animated/DALLE_2024-10-23_22.36.53_-_An_animated_cityscape_at_night_with_bright_neon_lights_futuristic_buildings_and_flying_cars_in_the_sky._The_city_is_vibrant_glowing_with_various_c.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,670 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/home_decor/DALLE_2024-10-23_23.02.36_-_A_modern_kitchen_with_sleek_cabinetry_a_marble_countertop_decorative_lighting_and_plants_adding_a_natural_touch_designed_with_stylish_decor.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,671 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/home_decor/DALLE_2024-10-23_23.02.30_-_A_well-decorated_dining_room_with_a_stylish_dining_table_modern_chairs_elegant_lighting_fixtures_and_tasteful_decor_accents_like_a_vase_of_flowers_.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,674 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/miscellaneous/DALLE_2024-10-23_23.07.31_-_A_whimsical_hot_air_balloon_floating_above_a_serene_landscape_with_mountains_and_lakes_featuring_vibrant_and_unique_designs_on_the_balloon.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,696 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/art_design/DALLE_2024-10-23_23.08.06_-_An_artistic_mosaic_pattern_made_of_colorful_tiles_in_various_shapes_and_sizes_displayed_on_a_wall_with_a_textured_surface._The_design_includes_abstra.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,697 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/miscellaneous/DALLE_2024-10-23_23.07.41_-_A_futuristic_glowing_orb_hovering_above_a_reflective_surface_casting_bright_and_ethereal_light_with_a_dark_background.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,697 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/miscellaneous/DALLE_2024-10-23_23.07.36_-_An_abstract_sculpture_made_of_intertwined_metallic_shapes_located_in_an_open_urban_plaza_reflecting_light_in_various_colors_1.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,702 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/miscellaneous/DALLE_2024-10-23_23.08.45_-_A_surreal_floating_island_suspended_in_the_sky_with_a_waterfall_flowing_off_the_edge_surrounded_by_clouds_and_a_magical_dreamlike_atmosphere.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,703 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/miscellaneous/DALLE_2024-11-08_14.07.15_-_A_dramatic_scene_of_Torquay_England_during_a_storm._Dark_clouds_fill_the_sky_casting_an_ominous_shadow_over_the_coastal_town._Large_waves_crash_agai.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,706 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/sports/DALLE_2024-11-13_19.17.01_-_A_dynamic_football_scene_featuring_a_player_in_motion_on_a_grassy_field_showcasing_the_action_and_energy_of_the_game_with_vivid_details_realistic_te.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,715 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/sports/DALLE_2024-11-13_19.17.04_-_A_basketball_player_mid-jump_for_a_slam_dunk_in_a_vibrant_stadium_capturing_the_energy_and_excitement_of_the_game._The_image_showcases_realistic_text.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,723 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/sports/DALLE_2024-11-13_19.17.06_-_A_tennis_player_preparing_to_serve_on_a_vibrant_tennis_court_capturing_the_precision_and_focus_of_the_sport._The_image_highlights_realistic_textures_.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,724 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/sports/DALLE_2024-11-13_19.17.06_-_A_tennis_player_preparing_to_serve_on_a_vibrant_tennis_court_capturing_the_precision_and_focus_of_the_sport._The_image_highlights_realistic_textures__1.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,731 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/world/DALLE_2024-11-14_16.10.48_-_An_AI-generated_image_of_famous_global_landmarks_featuring_icons_such_as_the_Eiffel_Tower_the_Great_Wall_of_China_the_Statue_of_Liberty_and_the_Ta.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,734 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/world/DALLE_2024-11-14_16.11.04_-_An_AI-generated_image_of_traditional_cuisine_from_around_the_world_featuring_diverse_dishes_such_as_Italian_pasta_Japanese_sushi_Mexican_tacos_and.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,735 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/world/DALLE_2024-11-14_16.10.57_-_An_AI-generated_image_showcasing_traditional_cultural_clothing_from_diverse_regions_of_the_world_featuring_attire_from_various_cultures_such_as_Japan.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,736 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/world/DALLE_2024-11-14_16.12.25_-_An_AI-generated_image_showcasing_people_from_different_cultures_engaging_in_traditional_celebrations_and_festivals._The_scene_includes_colorful_attire.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,752 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/history/DALLE_2024-11-14_16.16.32_-_An_AI-generated_image_depicting_ancient_historical_architecture_featuring_iconic_structures_like_the_Pyramids_of_Giza_the_Colosseum_in_Rome_and_the.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,753 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/history/DALLE_2024-11-14_16.16.41_-_An_AI-generated_image_illustrating_ancient_artifacts_and_relics_from_various_civilizations_including_items_like_Egyptian_statues_Roman_coins_and_Gr.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,755 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/history/DALLE_2024-11-14_16.16.46_-_An_AI-generated_image_portraying_a_historical_battle_scene_with_soldiers_from_ancient_times_engaged_in_combat._The_image_includes_elements_like_armor.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,756 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/history/DALLE_2024-11-14_16.16.54_-_An_AI-generated_image_of_a_historical_manuscript_or_ancient_map_featuring_intricate_designs_handwritten_script_and_faded_ink._The_image_should_have.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,757 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/finance/DALLE_2024-11-14_16.24.16_-_An_AI-generated_image_representing_the_finance_category_as_a_whole._The_image_should_include_symbolic_elements_like_stock_market_charts_coins_paper_.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,758 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/finance/DALLE_2024-11-14_16.24.24_-_An_AI-generated_image_focusing_on_the_concept_of_investment_in_finance_featuring_a_stock_market_chart_with_rising_and_falling_lines_a_laptop_and_a_.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,776 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/finance/DALLE_2024-11-14_16.24.27_-_An_AI-generated_image_illustrating_personal_finance_management_featuring_elements_like_a_household_budget_planner_cash_credit_cards_and_a_piggy_ba.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,776 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/finance/DALLE_2024-11-14_16.24.30_-_An_AI-generated_image_representing_financial_growth_and_wealth_building_featuring_elements_like_stacked_coins_a_small_plant_growing_from_the_coins_.webp HTTP/1.1" 200 -
+2024-11-22 22:29:36,777 - INFO - 127.0.0.1 - - [22/Nov/2024 22:29:36] "GET /static/uploads/food_drink/DALLE_2024-09-22_10.29.21_-_Two_halves_of_a_bell_pepper_filled_with_avocado_and_baked_egg_resting_on_a_white_plate._The_egg_yolk_is_still_slightly_runny_and_the_avocado_looks_c.webp HTTP/1.1" 200 -
+2024-11-22 22:34:35,666 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-22 22:34:35,667 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-22 22:34:35,669 - INFO -  * Restarting with stat
+2024-11-22 22:34:37,213 - WARNING -  * Debugger is active!
+2024-11-22 22:34:37,218 - INFO -  * Debugger PIN: 228-624-812
+2024-11-22 22:34:40,032 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "GET / HTTP/1.1" 200 -
+2024-11-22 22:34:40,148 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,149 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,149 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,298 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,313 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,313 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,315 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,319 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,324 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,335 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,343 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,344 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,347 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,348 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,356 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,358 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,359 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,361 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,362 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:40,510 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:40] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:34:43,559 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:43] "GET /cart HTTP/1.1" 200 -
+2024-11-22 22:34:43,583 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:43] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:34:43,591 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:43] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:34:43,593 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:43] "[36mGET /static/cart.css HTTP/1.1[0m" 304 -
+2024-11-22 22:34:43,595 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:43] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:43,690 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:43] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:43,692 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:43] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:43,697 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:43] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:34:45,673 - INFO - PayPal Client ID: <YOUR_PAYPAL_CLIENT_ID>
+2024-11-22 22:34:45,976 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:45] "GET /checkout HTTP/1.1" 200 -
+2024-11-22 22:34:46,001 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:34:46,003 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/checkout.css HTTP/1.1[0m" 304 -
+2024-11-22 22:34:46,004 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:34:46,005 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:46,066 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:46,069 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:34:46,073 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/uploads/index_images/AMEX-web-tile.jpg HTTP/1.1[0m" 304 -
+2024-11-22 22:34:46,075 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/uploads/index_images/mastercard%20logo.svg HTTP/1.1[0m" 304 -
+2024-11-22 22:34:46,074 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/uploads/index_images/visa%20logo.png HTTP/1.1[0m" 304 -
+2024-11-22 22:34:46,081 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:46] "[36mGET /static/uploads/index_images/paypal-mark-color.svg HTTP/1.1[0m" 304 -
+2024-11-22 22:34:48,657 - INFO - 127.0.0.1 - - [22/Nov/2024 22:34:48] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:36:36,380 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-22 22:36:36,382 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-22 22:36:39,286 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "GET / HTTP/1.1" 200 -
+2024-11-22 22:36:39,379 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,381 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,382 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,504 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,506 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,508 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,509 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,515 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,518 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,525 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,526 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,526 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,533 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,537 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,539 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,540 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,546 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,546 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,547 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:39,579 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:39] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:36:43,332 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:43] "GET /cart HTTP/1.1" 200 -
+2024-11-22 22:36:43,355 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:43] "[36mGET /static/cart.css HTTP/1.1[0m" 304 -
+2024-11-22 22:36:43,355 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:43] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:36:43,358 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:43] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:36:43,360 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:43] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:43,455 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:43] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:43,455 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:43] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:43,465 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:43] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:36:45,193 - INFO - PayPal Client ID: <YOUR_PAYPAL_CLIENT_ID>
+2024-11-22 22:36:45,248 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "GET /checkout HTTP/1.1" 200 -
+2024-11-22 22:36:45,272 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/checkout.css HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,273 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,274 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,275 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,372 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,373 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,375 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/uploads/index_images/visa%20logo.png HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,376 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/uploads/index_images/mastercard%20logo.svg HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,379 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/uploads/index_images/paypal-mark-color.svg HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,382 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "[36mGET /static/uploads/index_images/AMEX-web-tile.jpg HTTP/1.1[0m" 304 -
+2024-11-22 22:36:45,630 - INFO - 127.0.0.1 - - [22/Nov/2024 22:36:45] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:40:49,450 - INFO - 127.0.0.1 - - [22/Nov/2024 22:40:49] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:40:49,451 - INFO - 127.0.0.1 - - [22/Nov/2024 22:40:49] "[36mGET /static/checkout.css HTTP/1.1[0m" 304 -
+2024-11-22 22:50:52,673 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-22 22:50:52,674 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-22 22:50:56,382 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "GET / HTTP/1.1" 200 -
+2024-11-22 22:50:56,466 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,467 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,467 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,703 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,704 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,704 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,706 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,712 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,713 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,725 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,726 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,731 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,733 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,735 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,743 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,743 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,745 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,746 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:56,753 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:56] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:50:57,011 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:57] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:50:59,922 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:59] "GET /cart HTTP/1.1" 200 -
+2024-11-22 22:50:59,946 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:59] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:50:59,947 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:59] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:50:59,948 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:59] "[36mGET /static/cart.css HTTP/1.1[0m" 304 -
+2024-11-22 22:50:59,949 - INFO - 127.0.0.1 - - [22/Nov/2024 22:50:59] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:51:00,128 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:00] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:51:00,129 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:00] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:51:00,137 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:00] "GET /cart_count HTTP/1.1" 200 -
+2024-11-22 22:51:01,908 - INFO - PayPal Client ID: AUIjWJVyHY7qXec-2sVa7PFOynf4UtjRam2KFZCuLQjDkbYzg3LasmfjW5weNL1xH49PqZ4km61OhPo0
+2024-11-22 22:51:01,920 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:01] "GET /checkout HTTP/1.1" 200 -
+2024-11-22 22:51:01,954 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:01] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 22:51:01,960 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:01] "[36mGET /static/checkout.css HTTP/1.1[0m" 304 -
+2024-11-22 22:51:01,960 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:01] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-22 22:51:01,961 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:01] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:51:02,136 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:02] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:51:02,137 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:02] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-22 22:51:02,147 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:02] "[36mGET /static/uploads/index_images/mastercard%20logo.svg HTTP/1.1[0m" 304 -
+2024-11-22 22:51:02,147 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:02] "[36mGET /static/uploads/index_images/AMEX-web-tile.jpg HTTP/1.1[0m" 304 -
+2024-11-22 22:51:02,147 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:02] "[36mGET /static/uploads/index_images/visa%20logo.png HTTP/1.1[0m" 304 -
+2024-11-22 22:51:02,147 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:02] "[36mGET /static/uploads/index_images/paypal-mark-color.svg HTTP/1.1[0m" 304 -
+2024-11-22 22:51:03,008 - INFO - 127.0.0.1 - - [22/Nov/2024 22:51:03] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:40:43,198 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 13:40:43,201 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 13:40:47,817 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:47] "GET / HTTP/1.1" 200 -
+2024-11-23 13:40:47,987 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:47] "GET /static/styles.css HTTP/1.1" 200 -
+2024-11-23 13:40:48,000 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/nature.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,000 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/abstract.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,001 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/architecture.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,004 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/people.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,006 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/technology.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,024 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/art_design.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,032 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/fashion.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,034 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/business.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,036 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/food_drink.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,037 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/vehicles.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,054 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/home_decor.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,055 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/MACHINE.png HTTP/1.1" 200 -
+2024-11-23 13:40:48,066 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/animated.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,066 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/world.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,072 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/history.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,073 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/sports.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,080 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:40:48,092 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/finance.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,104 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "GET /static/uploads/index_images/miscellaneous.webp HTTP/1.1" 200 -
+2024-11-23 13:40:48,299 - INFO - 127.0.0.1 - - [23/Nov/2024 13:40:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-23 13:41:32,309 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:32] "GET /cart HTTP/1.1" 200 -
+2024-11-23 13:41:32,326 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:32] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 13:41:32,329 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:32] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 13:41:32,336 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:32] "[36mGET /static/cart.css HTTP/1.1[0m" 304 -
+2024-11-23 13:41:32,342 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:32] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:32,476 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:32] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:41:32,481 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:32] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:32,482 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:32] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,365 - INFO - PayPal Client ID: AUIjWJVyHY7qXec-2sVa7PFOynf4UtjRam2KFZCuLQjDkbYzg3LasmfjW5weNL1xH49PqZ4km61OhPo0
+2024-11-23 13:41:34,489 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "GET /checkout HTTP/1.1" 200 -
+2024-11-23 13:41:34,523 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,527 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,527 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,533 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/checkout.css HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,664 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,666 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,678 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/uploads/index_images/visa%20logo.png HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,681 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/uploads/index_images/AMEX-web-tile.jpg HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,683 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/uploads/index_images/paypal-mark-color.svg HTTP/1.1[0m" 304 -
+2024-11-23 13:41:34,687 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:34] "[36mGET /static/uploads/index_images/mastercard%20logo.svg HTTP/1.1[0m" 304 -
+2024-11-23 13:41:35,457 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:35] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:41:48,806 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:48] "GET /category/abstract HTTP/1.1" 200 -
+2024-11-23 13:41:48,824 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:48] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 13:41:48,827 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:48] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 13:41:48,828 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:48] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.06_-_A_bold_and_dynamic_abstract_composition_featuring_geometric_shapes_that_overlap_and_intersect_with_vibrant_color_gradients._The_design_should_convey_a.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:48,837 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:48] "[36mGET /static/category.css HTTP/1.1[0m" 304 -
+2024-11-23 13:41:48,968 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:48] "[36mGET /static/uploads/abstract/DALLE_2024-10-18_13.45.18_-_A_chaotic_and_expressive_abstract_painting_with_splashes_of_bright_red_yellow_and_orange_paint._The_image_should_feature_thick_brushstrokes_and_ener.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:48,971 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:48] "[36mGET /static/uploads/abstract/DALLE_2024-10-21_20.28.05_-_A_captivating_abstract_image_featuring_a_mix_of_geometric_shapes_swirling_vibrant_colors_and_fluid_forms_blending_together._The_composition_has_a_se.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:48,972 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:48] "[36mGET /static/uploads/abstract/DALLE_2024-10-23_13.06.39_-_A_vibrant_abstract_painting_featuring_bold_swirling_colors_in_red_blue_and_yellow._The_shapes_are_fluid_and_dynamic_creating_a_sense_of_movement_a.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:41:49,023 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:49] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:41:49,027 - INFO - 127.0.0.1 - - [23/Nov/2024 13:41:49] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:42:12,602 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:12] "[32mGET /upload HTTP/1.1[0m" 302 -
+2024-11-23 13:42:12,635 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:12] "GET /login HTTP/1.1" 200 -
+2024-11-23 13:42:12,650 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:12] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 13:42:12,652 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:12] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 13:42:12,663 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:12] "GET /static/login.css HTTP/1.1" 200 -
+2024-11-23 13:42:12,707 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:12] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:42:47,108 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-11-23 13:42:47,119 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "GET / HTTP/1.1" 200 -
+2024-11-23 13:42:47,141 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,142 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,142 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,142 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,143 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,143 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,153 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,155 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,156 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,157 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,166 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,172 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,174 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,174 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,181 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,182 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,183 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,184 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,184 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:42:47,273 - INFO - 127.0.0.1 - - [23/Nov/2024 13:42:47] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:43:02,777 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "GET /pricing HTTP/1.1" 200 -
+2024-11-23 13:43:02,792 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 13:43:02,797 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 13:43:02,803 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "GET /static/pricing.css HTTP/1.1" 200 -
+2024-11-23 13:43:02,803 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "GET /static/uploads/index_images/basic.webp HTTP/1.1" 200 -
+2024-11-23 13:43:02,806 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "GET /static/uploads/index_images/pro.webp HTTP/1.1" 200 -
+2024-11-23 13:43:02,811 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "GET /static/uploads/index_images/credits.webp HTTP/1.1" 200 -
+2024-11-23 13:43:02,841 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:43:02,844 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:43:02,860 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:02] "GET /static/uploads/index_images/premium.webp HTTP/1.1" 200 -
+2024-11-23 13:43:07,549 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:07] "[32mPOST /add_subscription_to_cart/basic HTTP/1.1[0m" 302 -
+2024-11-23 13:43:07,555 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:07] "GET /cart HTTP/1.1" 200 -
+2024-11-23 13:43:07,570 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 13:43:07,575 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:07] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 13:43:07,575 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:07] "GET /static/cart.css HTTP/1.1" 200 -
+2024-11-23 13:43:07,576 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:07] "[36mGET /static/uploads/index_images/basic.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:43:07,585 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:07] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:43:24,280 - INFO - PayPal Client ID: AUIjWJVyHY7qXec-2sVa7PFOynf4UtjRam2KFZCuLQjDkbYzg3LasmfjW5weNL1xH49PqZ4km61OhPo0
+2024-11-23 13:43:24,286 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:24] "GET /checkout HTTP/1.1" 200 -
+2024-11-23 13:43:24,299 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:24] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 13:43:24,306 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:24] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 13:43:24,307 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:24] "GET /static/checkout.css HTTP/1.1" 200 -
+2024-11-23 13:43:24,307 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:24] "GET /static/uploads/index_images/visa%20logo.png HTTP/1.1" 200 -
+2024-11-23 13:43:24,307 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:24] "GET /static/uploads/index_images/mastercard%20logo.svg HTTP/1.1" 200 -
+2024-11-23 13:43:24,307 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:24] "[36mGET /static/uploads/index_images/basic.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:43:24,308 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:24] "GET /static/uploads/index_images/paypal-mark-color.svg HTTP/1.1" 200 -
+2024-11-23 13:43:24,315 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:24] "GET /static/uploads/index_images/AMEX-web-tile.jpg HTTP/1.1" 200 -
+2024-11-23 13:43:25,088 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:25] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 13:43:57,602 - INFO - PayPal Client ID passed to template: AUIjWJVyHY7qXec-2sVa7PFOynf4UtjRam2KFZCuLQjDkbYzg3LasmfjW5weNL1xH49PqZ4km61OhPo0
+2024-11-23 13:43:57,602 - ERROR - Error during payment processing: No API key provided. (HINT: set your API key using "stripe.api_key = <API-KEY>"). You can generate API keys from the Stripe web interface.  See https://stripe.com/api for details, or email support@stripe.com if you have any questions.
+Traceback (most recent call last):
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\app.py", line 1437, in checkout
+    stripe_session = stripe.checkout.Session.create(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\stripe\checkout\_session.py", line 4331, in create
+    cls._static_request(
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\stripe\_api_resource.py", line 172, in _static_request
+    return _APIRequestor._global_instance().request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\stripe\_api_requestor.py", line 187, in request
+    rbody, rcode, rheaders = requestor.request_raw(
+                             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\stripe\_api_requestor.py", line 657, in request_raw
+    ) = self._args_for_request_with_retries(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\stripe\_api_requestor.py", line 546, in _args_for_request_with_retries
+    raise error.AuthenticationError(
+stripe._error.AuthenticationError: No API key provided. (HINT: set your API key using "stripe.api_key = <API-KEY>"). You can generate API keys from the Stripe web interface.  See https://stripe.com/api for details, or email support@stripe.com if you have any questions.
+2024-11-23 13:43:58,340 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "[32mPOST /checkout HTTP/1.1[0m" 302 -
+2024-11-23 13:43:58,345 - INFO - PayPal Client ID: AUIjWJVyHY7qXec-2sVa7PFOynf4UtjRam2KFZCuLQjDkbYzg3LasmfjW5weNL1xH49PqZ4km61OhPo0
+2024-11-23 13:43:58,350 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "GET /checkout HTTP/1.1" 200 -
+2024-11-23 13:43:58,370 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 13:43:58,372 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 13:43:58,373 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "[36mGET /static/checkout.css HTTP/1.1[0m" 304 -
+2024-11-23 13:43:58,373 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "[36mGET /static/uploads/index_images/basic.webp HTTP/1.1[0m" 304 -
+2024-11-23 13:43:58,377 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "[36mGET /static/uploads/index_images/visa%20logo.png HTTP/1.1[0m" 304 -
+2024-11-23 13:43:58,381 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "[36mGET /static/uploads/index_images/mastercard%20logo.svg HTTP/1.1[0m" 304 -
+2024-11-23 13:43:58,382 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "[36mGET /static/uploads/index_images/paypal-mark-color.svg HTTP/1.1[0m" 304 -
+2024-11-23 13:43:58,385 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "[36mGET /static/uploads/index_images/AMEX-web-tile.jpg HTTP/1.1[0m" 304 -
+2024-11-23 13:43:58,429 - INFO - 127.0.0.1 - - [23/Nov/2024 13:43:58] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 14:36:25,575 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 14:36:25,576 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 14:36:30,405 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "GET / HTTP/1.1" 200 -
+2024-11-23 14:36:30,498 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,502 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,505 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,636 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,637 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,640 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,641 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,645 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,647 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,656 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,659 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,659 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,663 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,668 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,669 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,677 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,677 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,679 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,679 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:36:30,730 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:30] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 14:36:53,538 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:53] "GET /profile/settings HTTP/1.1" 200 -
+2024-11-23 14:36:53,650 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 14:36:53,651 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:53] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 14:36:53,663 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:53] "GET /static/settings.css HTTP/1.1" 200 -
+2024-11-23 14:36:53,679 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:53] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 14:36:53,696 - INFO - 127.0.0.1 - - [23/Nov/2024 14:36:53] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 14:44:22,587 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 14:44:22,587 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 14:44:22,590 - INFO -  * Restarting with stat
+2024-11-23 14:44:24,002 - WARNING -  * Debugger is active!
+2024-11-23 14:44:24,004 - INFO -  * Debugger PIN: 924-117-469
+2024-11-23 14:44:31,754 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "GET / HTTP/1.1" 200 -
+2024-11-23 14:44:31,842 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,844 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,845 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,965 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,967 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,969 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,969 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,972 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,976 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,988 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,988 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,989 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,991 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:31,999 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:31] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:32,001 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:32] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:32,003 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:32] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:32,007 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:32] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:32,009 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:32] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:32,010 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:32] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:44:32,081 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:32] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 14:44:38,362 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:38] "[35m[1mGET /profile/settings HTTP/1.1[0m" 500 -
+2024-11-23 14:44:38,431 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:38] "GET /profile/settings?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2024-11-23 14:44:38,443 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:38] "GET /profile/settings?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2024-11-23 14:44:38,519 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:38] "GET /profile/settings?__debugger__=yes&cmd=resource&f=console.png&s=fZNCTy0fVcr4xjW4hM5o HTTP/1.1" 200 -
+2024-11-23 14:44:38,520 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:38] "GET /profile/settings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2024-11-23 14:44:38,564 - INFO - 127.0.0.1 - - [23/Nov/2024 14:44:38] "[36mGET /profile/settings?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-23 14:46:43,074 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 14:46:43,075 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 14:46:47,079 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "GET / HTTP/1.1" 200 -
+2024-11-23 14:46:47,165 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,166 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,167 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,362 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,366 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,368 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,369 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,371 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,375 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,381 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,385 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,388 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,393 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,397 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,398 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,399 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,400 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,405 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,411 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:46:47,669 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:47] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 14:46:53,035 - ERROR - Exception on /profile/settings [GET]
+Traceback (most recent call last):
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\app.py", line 820, in profile_settings
+    return render_template('settings.html', user=user, credits_remaining=credits_remaining)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\settings.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\base.html", line 81, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\settings.html", line 43, in block 'content'
+    <form action="{{ url_for('update_bank_details') }}" method="POST">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1121, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1110, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'update_bank_details'. Did you mean 'delete_account' instead?
+2024-11-23 14:46:53,044 - INFO - 127.0.0.1 - - [23/Nov/2024 14:46:53] "[35m[1mGET /profile/settings HTTP/1.1[0m" 500 -
+2024-11-23 14:56:09,584 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 14:56:09,585 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 14:56:15,174 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "GET / HTTP/1.1" 200 -
+2024-11-23 14:56:15,349 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,351 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,351 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,489 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,489 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,493 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,494 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,497 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,498 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,509 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,510 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,519 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,523 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,524 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,528 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,538 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,544 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,546 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,546 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 14:56:15,692 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:15] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 14:56:22,846 - ERROR - Exception on /profile/settings [GET]
+Traceback (most recent call last):
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\app.py", line 820, in profile_settings
+    return render_template('settings.html', user=user, credits_remaining=credits_remaining)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\settings.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\base.html", line 81, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\settings.html", line 43, in block 'content'
+    <form action="{{ url_for('update_bank_details') }}" method="POST">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1121, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1110, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'update_bank_details'. Did you mean 'delete_account' instead?
+2024-11-23 14:56:22,870 - INFO - 127.0.0.1 - - [23/Nov/2024 14:56:22] "[35m[1mGET /profile/settings HTTP/1.1[0m" 500 -
+2024-11-23 15:16:17,447 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 15:16:17,448 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 15:16:20,110 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "GET / HTTP/1.1" 200 -
+2024-11-23 15:16:20,197 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,198 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,198 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,454 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,455 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,459 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,459 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,460 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,463 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,479 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,489 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,490 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,491 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,493 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,494 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,499 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,509 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,510 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,511 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:16:20,565 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:20] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:16:25,859 - ERROR - Exception on /profile/settings [GET]
+Traceback (most recent call last):
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\app.py", line 820, in profile_settings
+    return render_template('settings.html', user=user, credits_remaining=credits_remaining)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\settings.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\base.html", line 81, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\settings.html", line 55, in block 'content'
+    <form action="{{ url_for('update_bank_details') }}" method="POST">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1121, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1110, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'update_bank_details'. Did you mean 'delete_account' instead?
+2024-11-23 15:16:25,875 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:25] "[35m[1mGET /profile/settings HTTP/1.1[0m" 500 -
+2024-11-23 15:16:51,399 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:51] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:16:57,813 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:57] "GET /purchase_history HTTP/1.1" 200 -
+2024-11-23 15:16:57,839 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:57] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:16:57,840 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:57] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:16:58,062 - INFO - 127.0.0.1 - - [23/Nov/2024 15:16:58] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:17:01,492 - ERROR - Exception on /profile/settings [GET]
+Traceback (most recent call last):
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\app.py", line 820, in profile_settings
+    return render_template('settings.html', user=user, credits_remaining=credits_remaining)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\settings.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\base.html", line 81, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\templates\settings.html", line 55, in block 'content'
+    <form action="{{ url_for('update_bank_details') }}" method="POST">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1121, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\flask\app.py", line 1110, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Jonsi\Documents\ai images\machinecanvas\.venv\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'update_bank_details'. Did you mean 'delete_account' instead?
+2024-11-23 15:17:01,498 - INFO - 127.0.0.1 - - [23/Nov/2024 15:17:01] "[35m[1mGET /profile/settings HTTP/1.1[0m" 500 -
+2024-11-23 15:20:53,749 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 15:20:53,749 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 15:20:53,751 - INFO -  * Restarting with stat
+2024-11-23 15:20:55,150 - WARNING -  * Debugger is active!
+2024-11-23 15:20:55,154 - INFO -  * Debugger PIN: 924-117-469
+2024-11-23 15:20:59,351 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "GET / HTTP/1.1" 200 -
+2024-11-23 15:20:59,552 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,565 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,565 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,852 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,853 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,856 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,856 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,862 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,864 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,870 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,872 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,874 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,877 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,882 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,890 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,899 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,901 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,904 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,904 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:20:59,998 - INFO - 127.0.0.1 - - [23/Nov/2024 15:20:59] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:21:08,329 - INFO - 127.0.0.1 - - [23/Nov/2024 15:21:08] "GET /profile/settings HTTP/1.1" 200 -
+2024-11-23 15:21:08,354 - INFO - 127.0.0.1 - - [23/Nov/2024 15:21:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:21:08,357 - INFO - 127.0.0.1 - - [23/Nov/2024 15:21:08] "[36mGET /static/settings.css HTTP/1.1[0m" 304 -
+2024-11-23 15:21:08,360 - INFO - 127.0.0.1 - - [23/Nov/2024 15:21:08] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:21:08,504 - INFO - 127.0.0.1 - - [23/Nov/2024 15:21:08] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:21:08,506 - INFO - 127.0.0.1 - - [23/Nov/2024 15:21:08] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:24:22,229 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 15:24:22,230 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 15:24:26,411 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "GET / HTTP/1.1" 200 -
+2024-11-23 15:24:26,504 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,504 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,505 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,712 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,721 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,721 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,721 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,721 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,722 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,741 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,751 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,752 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,753 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,754 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,760 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,760 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,763 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,767 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,770 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:26,914 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:26] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:24:38,389 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:38] "GET /profile/settings HTTP/1.1" 200 -
+2024-11-23 15:24:38,411 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:38] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:24:38,419 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:38] "[36mGET /static/settings.css HTTP/1.1[0m" 304 -
+2024-11-23 15:24:38,421 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:38] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:24:38,543 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:38] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:24:38,545 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:38] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:24:56,783 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "GET /pricing HTTP/1.1" 200 -
+2024-11-23 15:24:56,818 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:24:56,820 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "[36mGET /static/pricing.css HTTP/1.1[0m" 304 -
+2024-11-23 15:24:56,823 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:24:56,823 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "[36mGET /static/uploads/index_images/basic.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:56,872 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "[36mGET /static/uploads/index_images/pro.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:56,874 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "[36mGET /static/uploads/index_images/premium.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:56,874 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "[36mGET /static/uploads/index_images/credits.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:24:56,893 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:24:56,899 - INFO - 127.0.0.1 - - [23/Nov/2024 15:24:56] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:28:31,415 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 15:28:31,416 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 15:28:34,161 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "GET / HTTP/1.1" 200 -
+2024-11-23 15:28:34,485 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,492 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,493 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,493 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,501 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,505 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,507 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,510 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,516 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,518 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,524 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,527 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,527 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,532 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,540 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,541 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,548 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,549 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,549 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:28:34,611 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:34] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:28:44,320 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:44] "GET /profile/settings HTTP/1.1" 200 -
+2024-11-23 15:28:44,346 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:44] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:28:44,349 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:44] "[36mGET /static/settings.css HTTP/1.1[0m" 304 -
+2024-11-23 15:28:44,355 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:44] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:28:44,494 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:44] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:28:44,497 - INFO - 127.0.0.1 - - [23/Nov/2024 15:28:44] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:30:00,001 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-23 15:30:00,001 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-23 15:30:17,476 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "GET / HTTP/1.1" 200 -
+2024-11-23 15:30:17,567 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,568 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,571 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,705 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,706 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,706 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,711 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,714 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,715 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,722 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,726 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,726 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,731 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,733 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,734 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,739 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,742 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,744 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,747 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
+2024-11-23 15:30:17,796 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:17] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:30:46,693 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:46] "GET /profile/settings HTTP/1.1" 200 -
+2024-11-23 15:30:46,718 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-23 15:30:46,721 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:46] "[36mGET /static/settings.css HTTP/1.1[0m" 304 -
+2024-11-23 15:30:46,722 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:46] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-23 15:30:46,822 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:46] "GET /cart_count HTTP/1.1" 200 -
+2024-11-23 15:30:46,826 - INFO - 127.0.0.1 - - [23/Nov/2024 15:30:46] "GET /cart_count HTTP/1.1" 200 -
+2024-11-24 11:16:50,425 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "GET /pricing HTTP/1.1" 200 -
+2024-11-24 11:16:50,485 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "[36mGET /static/pricing.css HTTP/1.1[0m" 304 -
+2024-11-24 11:16:50,487 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2024-11-24 11:16:50,506 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "[36mGET /static/uploads/index_images/basic.webp HTTP/1.1[0m" 304 -
+2024-11-24 11:16:50,581 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "[36mGET /static/uploads/index_images/pro.webp HTTP/1.1[0m" 304 -
+2024-11-24 11:16:50,582 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "[36mGET /static/uploads/index_images/credits.webp HTTP/1.1[0m" 304 -
+2024-11-24 11:16:50,584 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2024-11-24 11:16:50,595 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "GET /cart_count HTTP/1.1" 200 -
+2024-11-24 11:16:50,597 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "GET /cart_count HTTP/1.1" 200 -
+2024-11-24 11:16:50,630 - INFO - 127.0.0.1 - - [24/Nov/2024 11:16:50] "[36mGET /static/uploads/index_images/premium.webp HTTP/1.1[0m" 304 -

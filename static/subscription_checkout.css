@@ -1,0 +1,156 @@
+/* Main Cart Layout */
+.cart-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #000; /* Black background for contrast */
+    min-height: 80vh;
+}
+
+/* Cart Container */
+.cart-container {
+    background-color: #1a1a1a; /* Dark gray for the grid background */
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px; /* Restrict width for centered layout */
+    display: grid;
+    gap: 15px; /* Space between cart items */
+}
+
+/* Individual Cart Item Box */
+.cart-item {
+    background-color: #2a2a2a; /* Slightly lighter gray for item background */
+    border: 1px solid #444; /* Gray border for separation */
+    border-radius: 6px;
+    padding: 15px;
+    display: flex; /* Horizontal layout for desktop view */
+    align-items: center;
+    gap: 15px;
+    color: #fff; /* White text for readability */
+}
+
+.cart-summary p {
+    color: white;
+}
+
+
+/* Thumbnail Styling */
+.cart-image-box {
+    width: 20%; /* Reduced width for the image */
+    height: 120px; /* Adjusted height */
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: #000; /* Fallback background */
+}
+
+.cart-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fits without distortion */
+    display: block;
+    border-radius: 4px;
+}
+
+/* Item Details */
+.cart-details {
+    flex-grow: 1; /* Allow the details to expand */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between text elements */
+}
+
+.cart-details p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #ddd; /* Light gray text */
+}
+
+.cart-details strong {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1em;
+}
+
+/* Buttons */
+.cart-remove-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.cart-remove-button:hover {
+    background-color: #c82333;
+}
+
+.cart-checkout-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
+}
+
+.cart-checkout-button:hover {
+    background-color: #0056b3;
+}
+
+/* Empty Cart Styling */
+.cart-empty {
+    text-align: center;
+    font-size: 1.2em;
+    color: #fff;
+    padding: 20px;
+    border: 2px dashed #444; /* Dashed border for visual separation */
+    border-radius: 6px;
+}
+
+/* Flash Message Styling */
+.flash-messages .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.flash-messages .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column; /* Vertical layout for smaller screens */
+        align-items: flex-start;
+    }
+
+    .cart-image-box {
+        width: 100%; /* Full width for smaller screens */
+        height: 150px; /* Maintain a consistent height */
+    }
+
+    .cart-details {
+        text-align: left;
+        width: 100%;
+    }
+
+    .cart-checkout-button,
+    .cart-remove-button {
+        width: 100%;
+        text-align: center;
+    }
+}
