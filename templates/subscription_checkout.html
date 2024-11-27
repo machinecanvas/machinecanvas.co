@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Stock AI Images{% endblock %}
+{% block title %}Subscription Checkout{% endblock %}
 
 {% block extra_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='subscription_checkout.css') }}">
@@ -9,78 +9,77 @@
 
 {% block content %}
 
-<main class="checkout-container">
-    <h1>Checkout</h1>
-
-    <!-- Cart Items Summary -->
-    <div class="cart-items-summary">
-        <h2>Your Selected Items</h2>
-        {% if cart_items %}
-        <div class="cart-items-table-container">
-            <table class="cart-items-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Details</th>
-                        <th>File Type</th>
-                        <th>Image Size</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in cart_items %}
-                    <tr>
-                        <td><img src="{{ item.thumbnail }}" alt="{{ item.name }}"></td>
-                        <td><p><strong>{{ item.name }}</strong></p></td>
-                        <td>{{ item.file_type }}</td>
-                        <td>{{ item.image_size }}</td>
-                        <td>${{ "%.2f"|format(item.price) }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>${{ "%.2f"|format(item.price * item.quantity) }}</td>
-                    </tr>
+<main class="subscription-checkout-container">
+    <div class="subscription-checkout-wrapper">
+        <h1>Subscription Checkout</h1>
+    
+        <!-- Subscription Plan Section -->
+        {% if selected_plan %}
+        <div class="subscription-container">
+            <!-- Thumbnail Section -->
+            <div class="subscription-thumbnail-box">
+                <img src="{{ url_for('static', filename='uploads/index_images/' + selected_plan['image']) }}" 
+                     alt="Selected Plan Thumbnail" class="subscription-thumbnail">
+            </div>
+    
+            <!-- Plan Information Section -->
+            <div class="subscription-plan-info">
+                <h2>{{ selected_plan['plan_name'] }}</h2>
+                <ul>
+                    {% for feature in selected_plan['features'] %}
+                    <li>{{ feature }}</li>
                     {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="total-amount">
-            <p><strong>Total:</strong> ${{ "%.2f"|format(total_amount or 0) }}</p>
+                </ul>
+            </div>
+    
+            <!-- Price Section -->
+            <div class="subscription-price">
+                <p>${{ "%.2f"|format(selected_plan['price']) }} per month</p>
+            </div>
         </div>
         {% else %}
-        <p>No items in your cart.</p>
+        <div class="subscription-empty">
+            <p>No subscription plan selected. Please return to the <a href="{{ url_for('pricing') }}">pricing page</a>.</p>
+        </div>
         {% endif %}
     </div>
+    
+</main>
 
-    <!-- Payment Section -->
-    <div class="payment-section">
-        <h2 style="color: black;">Secure Payment</h2>
-        <div class="payment-buttons">
-            <!-- Stripe Payment Button -->
-            <form action="{{ url_for('checkout') }}" method="POST" class="payment-form">
-                <input type="hidden" name="payment_method" value="stripe">
-                <button type="submit" class="pay-button">Pay Now</button>
-            </form>
-            <!-- PayPal Payment Button -->
-            <div id="paypal-button-container"></div>
-        </div>
-    </div>
 
-    <!-- Accepted Payment Methods -->
-    <div class="accepted-payment-methods">
-        <h3>Accepted Payment Methods</h3>
-        <div class="payment-icons">
-            <img src="{{ url_for('static', filename='uploads/index_images/visa logo.png') }}" alt="Visa" class="payment-icon">
-            <img src="{{ url_for('static', filename='uploads/index_images/mastercard logo.svg') }}" alt="MasterCard" class="payment-icon">
-            <img src="{{ url_for('static', filename='uploads/index_images/paypal-mark-color.svg') }}" alt="PayPal" class="payment-icon">
-            <img src="{{ url_for('static', filename='uploads/index_images/AMEX-web-tile.jpg') }}" alt="American Express" class="payment-icon">
+        <!-- Payment Section -->
+        <div class="payment-container">
+            <div class="payment-section">
+                <h2>Secure Payment</h2>
+                <div class="payment-buttons">
+                    <!-- Stripe Payment Button -->
+                    <form action="{{ url_for('process_subscription_payment') }}" method="POST" class="payment-form">
+                        <input type="hidden" name="payment_method" value="stripe">
+                        <input type="hidden" name="plan_id" value="{{ selected_plan['id'] }}">
+                        <button type="submit" class="pay-button">Pay with Stripe</button>
+                    </form>
+
+                    <!-- PayPal Payment Button -->
+                    <div id="paypal-subscription-button-container"></div>
+                </div>
+            </div>
+
+            <!-- Accepted Payment Methods -->
+            <div class="accepted-payment-methods">
+                <h3>Accepted Payment Methods</h3>
+                <div class="payment-icons">
+                    <img src="{{ url_for('static', filename='uploads/index_images/visa logo.png') }}" alt="Visa" class="payment-icon">
+                    <img src="{{ url_for('static', filename='uploads/index_images/mastercard logo.svg') }}" alt="MasterCard" class="payment-icon">
+                    <img src="{{ url_for('static', filename='uploads/index_images/paypal-mark-color.svg') }}" alt="PayPal" class="payment-icon">
+                    <img src="{{ url_for('static', filename='uploads/index_images/AMEX-web-tile.jpg') }}" alt="American Express" class="payment-icon">
+                </div>
+            </div>
         </div>
     </div>
 </main>
 
 <!-- PayPal SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&components=buttons"></script>
-
+<script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&vault=true&intent=subscription"></script>
 
 <script>
     paypal.Buttons({
@@ -88,39 +87,29 @@
             layout: 'horizontal',
             color: 'gold',
             shape: 'pill',
-            label: 'paypal'
+            label: 'subscribe'
         },
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '{{ "%.2f"|format(total_amount) }}'
-                    }
-                }]
+        createSubscription: function(data, actions) {
+            if (!'{{ selected_plan["paypal_plan_id"] }}') {
+                alert('PayPal plan ID is missing. Please contact support.');
+                return;
+            }
+            return actions.subscription.create({
+                plan_id: '{{ selected_plan["paypal_plan_id"] }}'
             });
         },
         onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Transaction completed by ' + details.payer.name.given_name);
-                window.location.href = "{{ url_for('success') }}";
-            });
+            alert('Subscription successful. Transaction ID: ' + data.subscriptionID);
+            window.location.href = "{{ url_for('manage_subscription') }}";
         },
         onCancel: function(data) {
-            alert('Transaction canceled.');
+            alert('Subscription canceled.');
         },
         onError: function(err) {
-            console.error('PayPal Button Error:', err);
+            console.error('PayPal Subscription Error:', err);
             alert('An error occurred with PayPal. Please try again.');
         }
-    }).render('#paypal-button-container');
+    }).render('#paypal-subscription-button-container');
 </script>
-<script>
-    console.log("PayPal Client ID: {{ paypal_client_id }}");
-</script>
-<script>
-    console.log("Total Amount for PayPal:", '{{ "%.2f"|format(total_amount or 0) }}');
-    console.log("PayPal Client ID:", '{{ paypal_client_id }}');
-</script>
-
 
 {% endblock %}

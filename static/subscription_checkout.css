@@ -1,156 +1,178 @@
-/* Main Cart Layout */
-.cart-main-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    background-color: #000; /* Black background for contrast */
-    min-height: 80vh;
-}
-
-/* Cart Container */
-.cart-container {
-    background-color: #1a1a1a; /* Dark gray for the grid background */
+/* Subscription Checkout Wrapper */
+.subscription-checkout-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #1c1c1c; /* Dark background for checkout */
     border-radius: 8px;
-    padding: 20px;
-    width: 100%;
-    max-width: 800px; /* Restrict width for centered layout */
-    display: grid;
-    gap: 15px; /* Space between cart items */
-}
-
-/* Individual Cart Item Box */
-.cart-item {
-    background-color: #2a2a2a; /* Slightly lighter gray for item background */
-    border: 1px solid #444; /* Gray border for separation */
-    border-radius: 6px;
-    padding: 15px;
-    display: flex; /* Horizontal layout for desktop view */
-    align-items: center;
-    gap: 15px;
-    color: #fff; /* White text for readability */
-}
-
-.cart-summary p {
-    color: white;
-}
-
-
-/* Thumbnail Styling */
-.cart-image-box {
-    width: 20%; /* Reduced width for the image */
-    height: 120px; /* Adjusted height */
-    overflow: hidden;
-    border-radius: 4px;
-    background-color: #000; /* Fallback background */
-}
-
-.cart-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image fits without distortion */
-    display: block;
-    border-radius: 4px;
-}
-
-/* Item Details */
-.cart-details {
-    flex-grow: 1; /* Allow the details to expand */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    color: #ffffff; /* Light text for readability */
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Space between text elements */
+    gap: 2rem; /* Space between sections */
 }
 
-.cart-details p {
+/* Subscription Container */
+.subscription-container {
+    background-color: #2a2a2a; /* Slightly lighter background */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Shadow for better emphasis */
+    display: flex; /* Horizontal layout for image and details */
+    align-items: center; /* Center items vertically */
+    gap: 40px; /* Space between sections */
+    justify-content: space-between; /* Spread items horizontally */
+}
+
+/* Thumbnail Styling */
+.subscription-thumbnail-box {
+    width: 120px; /* Fixed width for thumbnail */
+    height: 120px; /* Fixed height */
+    overflow: hidden;
+    background-color: #333; /* Slightly lighter background */
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for emphasis */
+    padding: 10px; /* Added padding for some space around the image */
+    flex-shrink: 0; /* Prevent shrinking on smaller screens */
+}
+
+/* Thumbnail Image */
+.subscription-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio without distortion */
+    border-radius: 8px;
+}
+
+/* Subscription Plan Info Section */
+.subscription-plan-info {
+    flex-grow: 2; /* Allow details section to grow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center text vertically */
+    gap: 15px; /* Space between elements in the info section */
+}
+
+.subscription-plan-info h2 {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 1.5rem;
+    color: #ffffff; /* White text for plan name */
+}
+
+.subscription-plan-info ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc; /* Bullet points for features */
     color: #ddd; /* Light gray text */
 }
 
-.cart-details strong {
-    font-weight: bold;
-    color: #fff;
-    font-size: 1em;
+.subscription-plan-info ul li {
+    margin-bottom: 5px; /* Space between features */
 }
 
-/* Buttons */
-.cart-remove-button {
-    background-color: #dc3545;
-    color: white;
-    padding: 8px 12px;
+.subscription-plan-info p {
+    margin: 0;
+    font-size: 1rem;
+    color: #ddd;
+}
+
+/* Price Section */
+.subscription-price {
+    text-align: right;
+    font-size: 1 rem;
+    
+    color: #ffffff; /* Bright green for emphasis */
+    flex-shrink: 0; /* Do not shrink */
+    min-width: 150px; /* Ensure consistent alignment */
+    align-self: flex-end; /* Align price to the bottom of the container */
+}
+
+
+/* Payment Container */
+.payment-container {
+    background-color: #444;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.payment-section {
+    background-color: #ffffff; /* Light background for payment area */
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.payment-section h2 {
+    color: #000;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Payment Buttons Section */
+.payment-buttons {
+    display: flex;
+    justify-content: center; /* Centers the payment buttons */
+    align-items: center;
+    gap: 1.5rem; /* Adds space between buttons */
+}
+
+.pay-button {
+    padding: 1rem 2rem;
+    background-color: #007bff; /* Blue for call-to-action */
+    color: #ffffff;
     border: none;
     border-radius: 4px;
-    font-size: 0.9em;
+    font-size: 1rem;
     cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.cart-remove-button:hover {
-    background-color: #c82333;
+.pay-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
-.cart-checkout-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 1em;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
+/* PayPal Button Styling */
+#paypal-subscription-button-container {
     display: block;
-    margin-top: 20px;
+    margin-top: 1rem; /* Spacing above the PayPal button */
 }
 
-.cart-checkout-button:hover {
-    background-color: #0056b3;
+/* Payment Icons Section */
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 1.5rem;
 }
 
-/* Empty Cart Styling */
-.cart-empty {
-    text-align: center;
-    font-size: 1.2em;
-    color: #fff;
-    padding: 20px;
-    border: 2px dashed #444; /* Dashed border for visual separation */
-    border-radius: 6px;
+.payment-icon {
+    height: 40px; /* Standard height for all icons */
+    width: auto; /* Maintain aspect ratio */
+    transition: transform 0.2s ease-in-out;
 }
 
-/* Flash Message Styling */
-.flash-messages .alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    font-size: 1em;
+.payment-icon:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
 }
 
-.flash-messages .alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border-color: #c3e6cb;
-}
-
-/* Responsive Adjustments */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .cart-item {
-        flex-direction: column; /* Vertical layout for smaller screens */
+    .subscription-container {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
         align-items: flex-start;
     }
 
-    .cart-image-box {
-        width: 100%; /* Full width for smaller screens */
-        height: 150px; /* Maintain a consistent height */
+    .subscription-thumbnail-box {
+        width: 80px; /* Smaller thumbnail size for mobile */
+        height: 80px;
     }
 
-    .cart-details {
+    .subscription-price {
         text-align: left;
-        width: 100%;
-    }
-
-    .cart-checkout-button,
-    .cart-remove-button {
-        width: 100%;
-        text-align: center;
+        margin-top: 10px; /* Add space above price for vertical layout */
     }
 }

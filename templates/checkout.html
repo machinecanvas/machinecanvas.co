@@ -10,70 +10,63 @@
 {% block content %}
 
 <main class="checkout-container">
-    <h1>Checkout</h1>
+    <div class="checkout-main-container">
+        <h1>Checkout</h1>
 
-    <!-- Cart Items Summary -->
-    <div class="cart-items-summary">
-        <h2>Your Selected Items</h2>
-        {% if cart_items %}
-        <div class="cart-items-table-container">
-            <table class="cart-items-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Details</th>
-                        <th>File Type</th>
-                        <th>Image Size</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in cart_items %}
-                    <tr>
-                        <td><img src="{{ item.thumbnail }}" alt="{{ item.name }}"></td>
-                        <td><p><strong>{{ item.name }}</strong></p></td>
-                        <td>{{ item.file_type }}</td>
-                        <td>{{ item.image_size }}</td>
-                        <td>${{ "%.2f"|format(item.price) }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>${{ "%.2f"|format(item.price * item.quantity) }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <!-- Cart Items Section -->
+        <div class="cart-container">
+            {% if cart_items %}
+            <div class="cart-content">
+                {% for item in cart_items %}
+                <div class="cart-item">
+                    <div class="cart-image-box">
+                        <img src="{{ item.thumbnail }}" alt="{{ item.name }}" class="cart-image">
+                    </div>
+                    <div class="cart-details">
+                        <p><strong>{{ item.name }}</strong></p>
+                        <p>File Type: {{ item.file_type.upper() }}</p>
+                        <p>Size: {{ item.image_size.title() }}</p>
+                        <p>Price: ${{ "%.2f"|format(item.price) }}</p>
+                        <p>Subtotal: ${{ "%.2f"|format(item.price * item.quantity) }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="cart-summary">
+                    <p><strong>Total:</strong> ${{ "%.2f"|format(total_amount or 0) }}</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="cart-empty">
+                <p>No items in your cart.</p>
+            </div>
+            {% endif %}
         </div>
-        <div class="total-amount">
-            <p><strong>Total:</strong> ${{ "%.2f"|format(total_amount or 0) }}</p>
-        </div>
-        {% else %}
-        <p>No items in your cart.</p>
-        {% endif %}
-    </div>
 
-    <!-- Payment Section -->
-    <div class="payment-section">
-        <h2 style="color: black;">Secure Payment</h2>
-        <div class="payment-buttons">
-            <!-- Stripe Payment Button -->
-            <form action="{{ url_for('checkout') }}" method="POST" class="payment-form">
-                <input type="hidden" name="payment_method" value="stripe">
-                <button type="submit" class="pay-button">Pay Now</button>
-            </form>
-            <!-- PayPal Payment Button -->
-            <div id="paypal-button-container"></div>
-        </div>
-    </div>
+        <!-- Payment Section -->
+        <div class="payment-container">
+            <div class="payment-section">
+                <h2>Secure Payment</h2>
+                <div class="payment-buttons">
+                    <!-- Stripe Payment Button -->
+                    <form action="{{ url_for('checkout') }}" method="POST" class="payment-form">
+                        <input type="hidden" name="payment_method" value="stripe">
+                        <button type="submit" class="pay-button">Pay Now</button>
+                    </form>
+                    <!-- PayPal Payment Button -->
+                    <div id="paypal-button-container"></div>
+                </div>
+            </div>
 
-    <!-- Accepted Payment Methods -->
-    <div class="accepted-payment-methods">
-        <h3>Accepted Payment Methods</h3>
-        <div class="payment-icons">
-            <img src="{{ url_for('static', filename='uploads/index_images/visa logo.png') }}" alt="Visa" class="payment-icon">
-            <img src="{{ url_for('static', filename='uploads/index_images/mastercard logo.svg') }}" alt="MasterCard" class="payment-icon">
-            <img src="{{ url_for('static', filename='uploads/index_images/paypal-mark-color.svg') }}" alt="PayPal" class="payment-icon">
-            <img src="{{ url_for('static', filename='uploads/index_images/AMEX-web-tile.jpg') }}" alt="American Express" class="payment-icon">
+            <!-- Accepted Payment Methods -->
+            <div class="accepted-payment-methods">
+                <h3>Accepted Payment Methods</h3>
+                <div class="payment-icons">
+                    <img src="{{ url_for('static', filename='uploads/index_images/visa logo.png') }}" alt="Visa" class="payment-icon">
+                    <img src="{{ url_for('static', filename='uploads/index_images/mastercard logo.svg') }}" alt="MasterCard" class="payment-icon">
+                    <img src="{{ url_for('static', filename='uploads/index_images/paypal-mark-color.svg') }}" alt="PayPal" class="payment-icon">
+                    <img src="{{ url_for('static', filename='uploads/index_images/AMEX-web-tile.jpg') }}" alt="American Express" class="payment-icon">
+                </div>
+            </div>
         </div>
     </div>
 </main>
@@ -114,14 +107,7 @@
         }
     }).render('#paypal-button-container');
 </script>
-<script>
-    console.log("PayPal Client ID: {{ paypal_client_id }}");
-</script>
-<script>
-    console.log("Total Amount for PayPal:", '{{ "%.2f"|format(total_amount or 0) }}');
-    console.log("PayPal Client ID:", '{{ paypal_client_id }}');
-</script>
-
 
 {% endblock %}
+
 

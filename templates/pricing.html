@@ -13,53 +13,54 @@
     <div class="pricing-row">
 
         <!-- Basic Plan -->
-        <div class="plan-box">
-            <div class="image-container">
-                <img src="{{ url_for('static', filename='uploads/index_images/basic.webp') }}" alt="Basic Plan" class="subscription-image">
-            </div>
-            <h3>Basic</h3>
-            <p class="price">$10/month</p>
-            <ul>
-                <li>Up to 10 image uploads per month</li>
-                <li>Access to basic features</li>
-            </ul>
-            <form action="{{ url_for('add_subscription_to_cart', plan='basic') }}" method="POST">
-                <button type="submit" class="btn-pricing-secondary">Upgrade to Basic</button>
-            </form>
-        </div>
+<div class="plan-box">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='uploads/index_images/basic.webp') }}" alt="Basic Plan" class="subscription-image">
+    </div>
+    <h3>Basic</h3>
+    <p class="price">$10/month</p>
+    <ul>
+        <li>Up to 10 image uploads per month</li>
+        <li>Access to basic features</li>
+    </ul>
+    <form action="{{ url_for('subscription_checkout', plan_id=3) }}" method="GET">
+        <button type="submit" class="btn-pricing-primary">Select Basic</button>
+    </form>
+</div>
 
-        <!-- Pro Plan -->
-        <div class="plan-box">
-            <div class="image-container">
-                <img src="{{ url_for('static', filename='uploads/index_images/pro.webp') }}" alt="Pro Plan" class="subscription-image">
-            </div>
-            <h3>Pro</h3>
-            <p class="price">$25/month</p>
-            <ul>
-                <li>Up to 50 image uploads per month</li>
-                <li>Access to all platform features</li>
-            </ul>
-            <form action="{{ url_for('add_subscription_to_cart', plan='pro') }}" method="POST">
-                <button type="submit" class="btn-pricing-secondary">Upgrade to Pro</button>
-            </form>
-        </div>
+<!-- Pro Plan -->
+<div class="plan-box">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='uploads/index_images/pro.webp') }}" alt="Pro Plan" class="subscription-image">
+    </div>
+    <h3>Pro</h3>
+    <p class="price">$25/month</p>
+    <ul>
+        <li>Up to 50 image uploads per month</li>
+        <li>Access to all platform features</li>
+    </ul>
+    <form action="{{ url_for('subscription_checkout', plan_id=4) }}" method="GET">
+        <button type="submit" class="btn-pricing-primary">Select Pro</button>
+    </form>
+</div>
 
-        <!-- Premium Plan -->
-        <div class="plan-box">
-            <div class="image-container">
-                <img src="{{ url_for('static', filename='uploads/index_images/premium.webp') }}" alt="Premium Plan" class="subscription-image">
-            </div>
-            <h3>Premium</h3>
-            <p class="price">$50/month</p>
-            <ul>
-                <li>Unlimited image uploads</li>
-                <li>Priority support</li>
-                <li>Reduced revenue share on sales</li>
-            </ul>
-            <form action="{{ url_for('add_subscription_to_cart', plan='premium') }}" method="POST">
-                <button type="submit" class="btn-pricing-secondary">Upgrade to Premium</button>
-            </form>
-        </div>
+<!-- Premium Plan -->
+<div class="plan-box">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='uploads/index_images/premium.webp') }}" alt="Premium Plan" class="subscription-image">
+    </div>
+    <h3>Premium</h3>
+    <p class="price">$50/month</p>
+    <ul>
+        <li>Unlimited image uploads</li>
+        <li>Priority support</li>
+        <li>Reduced revenue share on sales</li>
+    </ul>
+    <form action="{{ url_for('subscription_checkout', plan_id=5) }}" method="GET">
+        <button type="submit" class="btn-pricing-primary">Select Premium</button>
+    </form>
+</div>
+
 
         <!-- Credits Option -->
         <div class="plan-box">
@@ -74,7 +75,7 @@
                 <li>50 credits - $30</li>
             </ul>
             <form action="{{ url_for('purchase_credits') }}" method="GET">
-                <button type="submit" class="btn-pricing-secondary">Buy Credits</button>
+                <button type="submit" class="btn-pricing-primary">Buy Credits</button>
             </form>
         </div>
 
@@ -104,3 +105,4 @@
 </script>
 
 {% endblock %}
+

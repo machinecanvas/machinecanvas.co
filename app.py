@@ -26,18 +26,17 @@ from itsdangerous import URLSafeTimedSerializer
 
 app = Flask(__name__, static_folder='static')
 
-# Load environment variables
+# Load environment variables from .env
 load_dotenv()
 
-# Initialize Flask app
-app = Flask(__name__, static_folder='static')
-
-# Get SECRET_KEY from the .env file, or use a default value for development
+# Get SECRET_KEY from the .env file or use a default
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
 
-# Initialize URLSafeTimedSerializer
+# Initialize the serializer with the SECRET_KEY
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
+# Initialize URLSafeTimedSerializer
+serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 # Configure logging
 logging.basicConfig(
@@ -49,48 +48,40 @@ logging.basicConfig(
     ]
 )
 
-# Flask Application Configuration
-app = Flask(__name__, static_folder='static')
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:14031949@localhost/machinecanvas'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-# MySQL Configuration
+# General Configuration
 app.config.update(
+    SQLALCHEMY_DATABASE_URI='mysql://root:14031949@localhost/machinecanvas',
+    SQLALCHEMY_TRACK_MODIFICATIONS=False,
     MYSQL_HOST=os.getenv('MYSQL_HOST', 'localhost'),
     MYSQL_USER=os.getenv('MYSQL_USER', 'root'),
     MYSQL_PASSWORD=os.getenv('MYSQL_PASSWORD', '14031949'),
     MYSQL_DB=os.getenv('MYSQL_DB', 'machinecanvas'),
-    MYSQL_CURSORCLASS='DictCursor'
-)
-mysql = MySQL(app)
-
-# Email Configuration
-app.config.update(
+    MYSQL_CURSORCLASS= 'DictCursor',
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT=465,
     MAIL_USE_SSL=True,
     MAIL_USERNAME=os.getenv('MAIL_USERNAME', 'machinecanvas.co@gmail.com'),
     MAIL_PASSWORD=os.getenv('MAIL_PASSWORD', 'lnhp ivha wuxn duor'),
-    MAIL_DEFAULT_SENDER=os.getenv('MAIL_USERNAME', 'machinecanvas.co@gmail.com')
-)
-mail = Mail(app)
-
-# Upload Folder Configuration
-app.config.update(
+    MAIL_DEFAULT_SENDER=os.getenv('MAIL_USERNAME', 'machinecanvas.co@gmail.com'),
     UPLOAD_FOLDER=os.path.join('static', 'uploads'),
     TEMP_UPLOAD_FOLDER=os.path.join(os.getcwd(), 'temp'),
     ALLOWED_EXTENSIONS={'png', 'jpg', 'jpeg', 'gif', 'webp'}
 )
+
+# Initialize SQLAlchemy
+db = SQLAlchemy(app)
+
+# Initialize MySQL
+mysql = MySQL(app)
+
+# Initialize Flask-Mail
+mail = Mail(app)
+
+# Create necessary folders
 os.makedirs(app.config['TEMP_UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-# Load environment variables from the .env file
-load_dotenv()
-
 # Retrieve PayPal credentials from .env
-
 
 PAYPAL_CLIENT_ID = os.getenv("PAYPAL_CLIENT_ID")
 PAYPAL_CLIENT_SECRET = os.getenv("PAYPAL_CLIENT_SECRET")
@@ -99,9 +90,6 @@ PAYPAL_API_URL = os.getenv("PAYPAL_API_URL", "https://api-m.sandbox.paypal.com")
 
 # Stripe Configuration
 stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
-
-# Initialize URLSafeTimedSerializer
-serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 # Categories and Folder Creation
 categories = [
@@ -114,30 +102,75 @@ for category in categories:
 
 # Helper Functions
 def allowed_file(filename):
-    """Check if the file extension is allowed."""
+    """
+    Check if the file extension is allowed.
+    Args:
+        filename (str): The name of the file to check.
+    Returns:
+        bool: True if the file extension is allowed, False otherwise.
+    """
+    if not filename:
+        return False
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 def generate_confirmation_token(email):
-    """Generate a confirmation token for email."""
-    return serializer.dumps(email, salt='email-confirmation-salt')
+    """
+    Generate a confirmation token for email verification.
+    Args:
+        email (str): The user's email address.
+    Returns:
+        str: A secure token for email confirmation.
+    """
+    try:
+        return serializer.dumps(email, salt='email-confirmation-salt')
+    except Exception as e:
+        logging.error(f"Error generating confirmation token: {e}")
+        return None
 
 def verify_confirmation_token(token, expiration=3600):
-    """Verify the email confirmation token."""
+    """
+    Verify the email confirmation token.
+    Args:
+        token (str): The token to verify.
+        expiration (int): Expiration time in seconds (default is 1 hour).
+    Returns:
+        str: The email if the token is valid, None otherwise.
+    """
     try:
         return serializer.loads(token, salt='email-confirmation-salt', max_age=expiration)
-    except Exception:
+    except Exception as e:
+        logging.warning(f"Invalid or expired confirmation token: {e}")
         return None
 
 def generate_password_reset_token(email):
-    """Generate a password reset token."""
-    return serializer.dumps(email, salt='password-reset-salt')
+    """
+    Generate a password reset token.
+    Args:
+        email (str): The user's email address.
+    Returns:
+        str: A secure token for password reset.
+    """
+    try:
+        return serializer.dumps(email, salt='password-reset-salt')
+    except Exception as e:
+        logging.error(f"Error generating password reset token: {e}")
+        return None
 
 def verify_password_reset_token(token, expiration=3600):
-    """Verify the password reset token."""
+    """
+    Verify the password reset token.
+    Args:
+        token (str): The token to verify.
+        expiration (int): Expiration time in seconds (default is 1 hour).
+    Returns:
+        str: The email if the token is valid, None otherwise.
+    """
     try:
         return serializer.loads(token, salt='password-reset-salt', max_age=expiration)
-    except Exception:
+    except Exception as e:
+        logging.warning(f"Invalid or expired password reset token: {e}")
         return None
+
 
 # Database Models
 class User(db.Model):
@@ -176,9 +209,10 @@ with app.app_context():
 
 # Route for Home
 @app.route('/', endpoint='home_page')
-def home():
-    print(f"Session data: {session}")  # Print all session data for debugging
+def home_page():
+    print(f"Session data: {session}")  # Debugging
     return render_template('index.html', email=session.get('email'))
+
 
 # Signup Route
 @app.route('/signup', methods=['GET', 'POST'])
@@ -212,8 +246,10 @@ def signup():
         # If no errors, hash password and insert into the database
         if not error and not user_id_error:
             try:
+                # Hash the user's password
                 hashed_password = generate_password_hash(password)
-                # Insert the user and set to free plan
+
+                # Insert the user into the `users` table
                 cursor.execute(
                     '''
                     INSERT INTO users (email, user_id, password, subscription, confirmed, credits) 
@@ -222,18 +258,32 @@ def signup():
                     (email, user_id, hashed_password, 'free', False, 3)
                 )
                 
-                # Fetch the new user's ID to link to their free plan
+                # Get the new user's ID
                 new_user_id = cursor.lastrowid
-                
-                # Insert into user_subscriptions with 3 credits and 3 upload limit for free plan
-                cursor.execute(
-                    '''
-                    INSERT INTO user_subscriptions (user_id, plan_id, upload_limit, credits_remaining)
-                    VALUES (%s, %s, %s, %s)
-                    ''',
-                    (new_user_id, 1, 3, 3)  # Plan ID 1 assumed to be the free plan
-                )
-                
+
+                # Check if a free subscription plan exists
+                cursor.execute("SELECT id, upload_limit FROM pricing_plans WHERE plan_name = 'Free'")
+                free_plan = cursor.fetchone()
+
+                if free_plan:
+                    # Insert a free subscription for the user
+                    cursor.execute(
+                        '''
+                        INSERT INTO user_subscriptions (user_id, plan_id, upload_limit, credits_remaining)
+                        VALUES (%s, %s, %s, %s)
+                        ''',
+                        (new_user_id, free_plan['id'], free_plan['upload_limit'], free_plan['upload_limit'])
+                    )
+                else:
+                    # If no free plan exists, set defaults manually
+                    cursor.execute(
+                        '''
+                        INSERT INTO user_subscriptions (user_id, plan_id, upload_limit, credits_remaining)
+                        VALUES (%s, %s, %s, %s)
+                        ''',
+                        (new_user_id, 1, 3, 3)  # Default to 3 uploads and 3 credits
+                    )
+
                 mysql.connection.commit()
 
                 # Send confirmation email
@@ -248,8 +298,7 @@ def signup():
             except Exception as e:
                 mysql.connection.rollback()
                 flash('An error occurred during registration. Please try again.', 'danger')
-                print(f"Error during registration: {e}")
-            
+                logging.error(f"Error during signup: {e}")
             finally:
                 cursor.close()
 
@@ -390,11 +439,6 @@ def forgotten_password():
 
     return render_template('forgotten_password.html')
 
-@app.route('/')
-def index():
-    email = session.get('email') if 'loggedin' in session else None  # Check if the user is logged in
-    return render_template('index.html', email=email)
-
 # Route for Resetting Password
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
@@ -427,69 +471,50 @@ def reset_password(token):
 
     return render_template('reset_password.html', token=token)
 
-# Pricing Route for Viewing, Subscribing, and Upgrading Plans
 @app.route('/pricing', methods=['GET', 'POST'])
 def pricing():
+    """
+    Route for viewing pricing plans and redirecting to subscription checkout.
+    Handles new subscriptions and plan upgrades.
+    """
     cursor = mysql.connection.cursor(DictCursor)  # Use DictCursor for dictionary-style results
 
     if request.method == 'POST':
-        # Check if the user is attempting to upgrade or subscribe
-        if 'upgrade' in request.form or 'subscribe' in request.form:
-            # Get the plan ID from form data
-            plan_id = request.form.get('plan_id')
-            user_id = session.get('user_id')
-            
-            if not user_id:
-                flash('Please log in to manage your subscription.', 'danger')
-                return redirect(url_for('login'))
+        # Handle subscription selection
+        plan_id = request.form.get('plan_id')  # Get the selected plan ID
+        user_id = session.get('user_id')  # Ensure the user is logged in
 
-            # Fetch the plan details to get upload limits and other details
-            cursor.execute("SELECT upload_limit, plan_name FROM pricing_plans WHERE id = %s", (plan_id,))
-            plan = cursor.fetchone()
+        if not user_id:
+            flash('Please log in to subscribe or upgrade your plan.', 'danger')
+            return redirect(url_for('login'))
 
-            if not plan:
-                flash('Selected plan does not exist.', 'danger')
-                cursor.close()  # Close the cursor before redirecting
-                return redirect(url_for('pricing'))
+        # Fetch the selected plan details
+        cursor.execute("SELECT id, plan_name FROM pricing_plans WHERE id = %s", (plan_id,))
+        plan = cursor.fetchone()
 
-            # Check if the user already has a subscription
-            cursor.execute("SELECT * FROM user_subscriptions WHERE user_id = %s", (user_id,))
-            subscription = cursor.fetchone()
+        if not plan:
+            flash('Selected plan does not exist. Please try again.', 'danger')
+            cursor.close()
+            return redirect(url_for('pricing'))
 
-            try:
-                if subscription:
-                    # Update existing subscription
-                    cursor.execute("""
-                        UPDATE user_subscriptions 
-                        SET plan_id = %s, upload_limit = %s, credits_remaining = %s, uploads_this_month = 0
-                        WHERE user_id = %s
-                    """, (plan_id, plan['upload_limit'], plan['upload_limit'], user_id))
-                    flash(f'Your subscription has been updated to the {plan["plan_name"]} plan!', 'success')
-                else:
-                    # Create a new subscription
-                    cursor.execute("""
-                        INSERT INTO user_subscriptions (user_id, plan_id, upload_limit, credits_remaining)
-                        VALUES (%s, %s, %s, %s)
-                    """, (user_id, plan_id, plan['upload_limit'], plan['upload_limit']))
-                    flash(f'You have successfully subscribed to the {plan["plan_name"]} plan!', 'success')
+        # Redirect to the subscription checkout page with the plan ID
+        cursor.close()
+        return redirect(url_for('subscription_checkout', plan_id=plan_id))
 
-                mysql.connection.commit()
-            except Exception as e:
-                mysql.connection.rollback()  # Rollback in case of an error
-                flash('An error occurred while processing your subscription. Please try again.', 'danger')
-                print(f"Subscription error: {e}")
-            finally:
-                cursor.close()
-
-            return redirect(url_for('manage_subscription'))
-
-    # Handle GET request to show available pricing plans
-    cursor.execute("SELECT id, plan_name, price, upload_limit, revenue_share, description FROM pricing_plans")
-    plans = cursor.fetchall()
-    cursor.close()
+    # Handle GET request: Fetch available pricing plans to display
+    try:
+        cursor.execute("SELECT id, plan_name, price, upload_limit FROM pricing_plans")
+        plans = cursor.fetchall()
+    except Exception as e:
+        print(f"Error fetching pricing plans: {e}")
+        flash('An error occurred while loading pricing plans. Please try again later.', 'danger')
+        plans = []
+    finally:
+        cursor.close()
 
     # Render the pricing page with the available plans
     return render_template('pricing.html', plans=plans)
+
 
 
 from PIL import Image
@@ -829,54 +854,70 @@ def manage_subscription():
         return redirect(url_for('login'))
 
     user_id = session['user_id']
-    cursor = mysql.connection.cursor(dictionary=True)
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)  # Use DictCursor for dictionary-style results
 
-    # Fetch the user's current subscription details
-    cursor.execute("""
-        SELECT us.plan_id, us.start_date, us.credits_remaining, p.plan_name, p.price, p.upload_limit, p.revenue_share 
-        FROM user_subscriptions us
-        JOIN pricing_plans p ON us.plan_id = p.id
-        WHERE us.user_id = %s
-    """, (user_id,))
-    subscription = cursor.fetchone()
+    try:
+        # Fetch the user's current subscription details
+        cursor.execute("""
+            SELECT us.plan_id, us.start_date, us.end_date, us.credits_remaining, 
+                   p.plan_name, p.price, p.upload_limit 
+            FROM user_subscriptions us
+            JOIN pricing_plans p ON us.plan_id = p.id
+            WHERE us.user_id = %s
+        """, (user_id,))
+        subscription = cursor.fetchone()
 
-    # If no subscription, redirect to the pricing page
-    if not subscription:
-        flash('You do not have an active subscription. Please select a plan to subscribe.', 'info')
-        cursor.close()
-        return redirect(url_for('manage_subscription'))
+        # If no subscription, redirect to the pricing page
+        if not subscription:
+            flash('You do not have an active subscription. Please select a plan to subscribe.', 'info')
+            return redirect(url_for('pricing'))
 
-    # Handle subscription update/cancellation requests
-    if request.method == 'POST':
-        action = request.form.get('action')
-        
-        if action == 'cancel':
-            cursor.execute("DELETE FROM user_subscriptions WHERE user_id = %s", (user_id,))
-            mysql.connection.commit()
-            flash('Your subscription has been canceled.', 'success')
-            cursor.close()
-            return redirect(url_for('manage_subscription'))
-        
-        elif action == 'change_plan':
-            new_plan_id = request.form.get('new_plan_id')
-            if new_plan_id:
-                cursor.execute("UPDATE user_subscriptions SET plan_id = %s WHERE user_id = %s", (new_plan_id, user_id))
+        # Handle subscription update/cancellation requests
+        if request.method == 'POST':
+            action = request.form.get('action')
+
+            if action == 'cancel':
+                # Cancel the user's subscription
+                cursor.execute("DELETE FROM user_subscriptions WHERE user_id = %s", (user_id,))
                 mysql.connection.commit()
-                flash('Your subscription plan has been updated.', 'success')
+                flash('Your subscription has been canceled.', 'success')
                 return redirect(url_for('manage_subscription'))
-            else:
-                flash('Please select a valid plan to update.', 'danger')
 
-    # Fetch all available plans to display as options for plan change
-    cursor.execute("SELECT * FROM pricing_plans")
-    available_plans = cursor.fetchall()
-    cursor.close()
+            elif action == 'change_plan':
+                new_plan_id = request.form.get('new_plan_id')
+                if new_plan_id:
+                    # Validate new plan exists
+                    cursor.execute("SELECT id FROM pricing_plans WHERE id = %s", (new_plan_id,))
+                    if cursor.fetchone():
+                        cursor.execute(
+                            "UPDATE user_subscriptions SET plan_id = %s, start_date = NOW(), end_date = DATE_ADD(NOW(), INTERVAL 1 MONTH) WHERE user_id = %s",
+                            (new_plan_id, user_id)
+                        )
+                        mysql.connection.commit()
+                        flash('Your subscription plan has been updated.', 'success')
+                    else:
+                        flash('The selected plan does not exist.', 'danger')
+                else:
+                    flash('Please select a valid plan to update.', 'danger')
+                return redirect(url_for('manage_subscription'))
+
+        # Fetch all available plans to display as options for plan change
+        cursor.execute("SELECT id, plan_name, price, upload_limit FROM pricing_plans")
+        available_plans = cursor.fetchall()
+
+    except Exception as e:
+        logging.error(f"Error in manage_subscription: {e}")
+        flash('An error occurred while managing your subscription.', 'danger')
+        return redirect(url_for('pricing'))
+    finally:
+        cursor.close()
 
     return render_template(
         'manage_subscription.html',
         subscription=subscription,
         available_plans=available_plans
     )
+
 
 @app.route('/profile/my-images', endpoint='profile_images')
 def profile_images():
@@ -1086,35 +1127,7 @@ def payment():
         return redirect(url_for('category_page', category_name=request.args.get('category_name', 'abstract')))
 
     # Define subscription plans as a dictionary
-SUBSCRIPTION_PLANS = {
-    "basic": {
-        "name": "Basic",
-        "price": 10,
-        "features": [
-            "Up to 10 image uploads per month",
-            "Access to basic features",
-            "Standard revenue share on sales"
-        ]
-    },
-    "pro": {
-        "name": "Pro",
-        "price": 25,
-        "features": [
-            "Up to 50 image uploads per month",
-            "Access to all platform features",
-            "Reduced revenue share on sales"
-        ]
-    },
-    "premium": {
-        "name": "Premium",
-        "price": 50,
-        "features": [
-            "Unlimited image uploads",
-            "Priority support",
-            "Reduced revenue share on sales"
-        ]
-    }
-}
+
 
 @app.route('/cart_count', methods=['GET'])
 def cart_count():
@@ -1143,63 +1156,123 @@ def cart():
 
     return render_template('cart.html', cart_items=cart_items, total_amount=total_amount)
 
+#subscription checkout
 
-@app.route('/add_subscription_to_cart/<plan>', methods=['POST'])
-def add_subscription_to_cart(plan):
-    """Add a subscription plan to the cart or update if it exists."""
-    # Define subscription plans with thumbnails
-    SUBSCRIPTION_PLANS = {
-        "basic": {
-            "name": "Basic",
-            "price": 10.0,
-            "features": ["Up to 10 image uploads per month", "Access to basic features"],
-            "thumbnail": url_for('static', filename='uploads/index_images/basic.webp')  # Corrected path
-        },
-        "pro": {
-            "name": "Pro",
-            "price": 25.0,
-            "features": ["Up to 50 image uploads per month", "Access to all platform features"],
-            "thumbnail": url_for('static', filename='uploads/index_images/pro.webp')  # Corrected path
-        },
-        "premium": {
-            "name": "Premium",
-            "price": 50.0,
-            "features": ["Unlimited image uploads", "Priority support", "Reduced revenue share on sales"],
-            "thumbnail": url_for('static', filename='uploads/index_images/premium.webp')  # Corrected path
-        }
-    }
+@app.route('/subscription_checkout/<int:plan_id>', methods=['GET', 'POST'])
+def subscription_checkout(plan_id):
+    """Handle subscription checkout for a selected plan."""
+    paypal_client_id = os.getenv("PAYPAL_CLIENT_ID", "your_default_paypal_client_id")
+    cursor = mysql.connection.cursor(DictCursor)
 
-    # Fetch the selected plan details
-    plan_details = SUBSCRIPTION_PLANS.get(plan.lower())
-    if not plan_details:
-        flash("Invalid subscription plan selected.", "danger")
-        return redirect(url_for('cart'))
+    # Ensure the user is logged in
+    if 'user_id' not in session:
+        flash("Please log in to continue.", "warning")
+        return redirect(url_for('login'))
 
-    # Prepare the subscription item
-    subscription_item = {
-        'id': f"sub_{plan}",
-        'name': f"{plan_details['name']} Plan",
-        'price': plan_details['price'],
-        'quantity': 1,
-        'type': 'subscription',
-        'features': plan_details['features'],
-        'thumbnail': plan_details['thumbnail']  # Add the thumbnail field
-    }
+    user_id = session['user_id']
 
-    # Retrieve or initialize the cart
-    cart = session.get('cart', [])
+    try:
+        # Fetch the plan details from the database
+        cursor.execute(
+            """
+            SELECT id, plan_name, price, upload_limit, revenue_share, description, image 
+            FROM pricing_plans 
+            WHERE id = %s
+            """, 
+            (plan_id,)
+        )
+        plan_details = cursor.fetchone()
 
-    # Check if the plan is already in the cart
-    if not any(cart_item['id'] == subscription_item['id'] for cart_item in cart):
-        cart.append(subscription_item)
-        session.modified = True
-        flash(f"{plan_details['name']} Plan added to cart!", 'success')
-    else:
-        flash(f"{plan_details['name']} Plan is already in your cart.", 'info')
+        if not plan_details:
+            flash("Invalid subscription plan selected.", "danger")
+            return redirect(url_for('pricing'))
 
-    # Save the updated cart to the session
-    session['cart'] = cart
-    return redirect(url_for('cart'))
+        # Parse the description into features (if applicable)
+        if plan_details.get('description'):
+            plan_details['features'] = plan_details['description'].split(', ')
+        else:
+            plan_details['features'] = []
+
+        # Check if the user already has a subscription
+        cursor.execute("SELECT plan_id FROM user_subscriptions WHERE user_id = %s", (user_id,))
+        current_subscription = cursor.fetchone()
+
+        if current_subscription and current_subscription['plan_id'] == plan_details['id']:
+            flash(f"You are already subscribed to the {plan_details['plan_name']} Plan.", "info")
+            return redirect(url_for('manage_subscription'))
+
+    except Exception as e:
+        print(f"Error fetching plan details: {e}")
+        flash("An error occurred while processing your request. Please try again later.", "danger")
+        return redirect(url_for('pricing'))
+    finally:
+        cursor.close()
+
+    # If POST request, handle the payment logic
+    if request.method == 'POST':
+        payment_method = request.form.get('payment_method')
+
+        if payment_method == 'stripe':
+            # Placeholder for Stripe payment logic
+            flash("Stripe payment processing is not implemented yet.", "info")
+            return redirect(url_for('manage_subscription'))
+        elif payment_method == 'paypal':
+            # Placeholder for PayPal subscription logic
+            flash("PayPal payment processing is not implemented yet.", "info")
+            return redirect(url_for('manage_subscription'))
+        else:
+            flash("Invalid payment method selected.", "danger")
+            return redirect(url_for('subscription_checkout', plan_id=plan_id))
+
+    # Render the subscription checkout template
+    return render_template(
+        'subscription_checkout.html',
+        selected_plan=plan_details,
+        paypal_client_id=paypal_client_id
+    )
+
+
+@app.route('/process_subscription_payment', methods=['POST'])
+def process_subscription_payment():
+    """Handle subscription payment processing."""
+    user_id = session.get('user_id')
+    plan_id = request.form.get('plan')
+    payment_method = request.form.get('payment_method')
+
+    if not user_id or not plan_id:
+        flash('Invalid subscription request. Please try again.', 'danger')
+        return redirect(url_for('pricing'))
+
+    # Example Payment Processing Logic
+    try:
+        if payment_method == 'stripe':
+            # Integrate with Stripe API
+            # Example: Create a payment session or charge the user
+            pass
+        elif payment_method == 'paypal':
+            # Integrate with PayPal API
+            pass
+        else:
+            flash('Invalid payment method.', 'danger')
+            return redirect(url_for('subscription_checkout', plan=plan_id))
+
+        # Update the user's subscription in the database
+        cursor = mysql.connection.cursor()
+        cursor.execute("""
+            INSERT INTO user_subscriptions (user_id, plan_id, start_date, end_date)
+            VALUES (%s, %s, NOW(), DATE_ADD(NOW(), INTERVAL 1 MONTH))
+            ON DUPLICATE KEY UPDATE plan_id = VALUES(plan_id), start_date = NOW(), end_date = DATE_ADD(NOW(), INTERVAL 1 MONTH)
+        """, (user_id, plan_id))
+        mysql.connection.commit()
+        cursor.close()
+
+        flash('Subscription successful!', 'success')
+        return redirect(url_for('manage_subscriptions'))
+
+    except Exception as e:
+        flash(f"An error occurred while processing your payment: {e}", 'danger')
+        return redirect(url_for('pricing'))
+
 
 
 @app.route('/purchase_credits', methods=['GET', 'POST'])
@@ -1290,7 +1363,7 @@ def find_file_with_extension(category, base_filename):
 def add_to_cart():
     """
     Add an item to the cart or update its quantity if it already exists.
-    Supports purchased images, subscriptions, and credits.
+    Supports purchased images and credits. Subscriptions are excluded.
     """
     try:
         # Extract form data
@@ -1333,28 +1406,6 @@ def add_to_cart():
                 'category': image_data['category']
             }
 
-        # Handle 'subscription' items
-        elif item_type == 'subscription':
-            plan = request.form.get('plan')
-            price = float(request.form.get('price', 0))
-
-            if not plan or price <= 0:
-                return jsonify({'success': False, 'message': "Invalid subscription details."}), 400
-
-            # Construct the thumbnail path for subscriptions
-            thumbnail = url_for('static', filename=f"uploads/index_images/{plan.lower()}.webp")
-
-            item = {
-                'id': f"subscription_{plan}",
-                'name': f"{plan.capitalize()} Subscription",
-                'price': price,
-                'quantity': 1,
-                'type': item_type,
-                'thumbnail': thumbnail,
-                'file_type': None,  # Subscriptions don't have a file type
-                'image_size': None  # Subscriptions don't have an image size
-            }
-
         # Handle 'credits' items
         elif item_type == 'credits':
             credits = int(request.form.get('credits', 0))
@@ -1376,6 +1427,10 @@ def add_to_cart():
                 'file_type': None,
                 'image_size': None
             }
+
+        # Subscriptions are excluded
+        elif item_type == 'subscription':
+            return jsonify({'success': False, 'message': "Subscriptions cannot be added to the cart."}), 400
 
         # Ensure the item was created successfully
         if not item:
