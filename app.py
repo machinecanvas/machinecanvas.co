@@ -24,7 +24,7 @@ import logging
 from dotenv import load_dotenv
 from itsdangerous import URLSafeTimedSerializer
 
-app = Flask(__name__, static_folder='static', template_folder='build/templates')
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 
 # Load environment variables from .env
