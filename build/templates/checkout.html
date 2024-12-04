@@ -17,20 +17,34 @@
         <div class="cart-container">
             {% if cart_items %}
             <div class="cart-content">
-                {% for item in cart_items %}
-                <div class="cart-item">
-                    <div class="cart-image-box">
-                        <img src="{{ item.thumbnail }}" alt="{{ item.name }}" class="cart-image">
-                    </div>
-                    <div class="cart-details">
-                        <p><strong>{{ item.name }}</strong></p>
-                        <p>File Type: {{ item.file_type.upper() }}</p>
-                        <p>Size: {{ item.image_size.title() }}</p>
-                        <p>Price: ${{ "%.2f"|format(item.price) }}</p>
-                        <p>Subtotal: ${{ "%.2f"|format(item.price * item.quantity) }}</p>
-                    </div>
-                </div>
-                {% endfor %}
+                <table class="cart-items-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Details</th>
+                            <th>File Type</th>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr>
+                            <td>
+                                <div class="cart-image-box">
+                                    <img src="{{ item.thumbnail }}" alt="{{ item.name }}" class="cart-image">
+                                </div>
+                            </td>
+                            <td><strong>{{ item.name }}</strong></td>
+                            <td>{{ item.file_type.upper() }}</td>
+                            <td>{{ item.image_size.title() }}</td>
+                            <td>${{ "%.2f"|format(item.price) }}</td>
+                            <td>${{ "%.2f"|format(item.price * item.quantity) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
                 <div class="cart-summary">
                     <p><strong>Total:</strong> ${{ "%.2f"|format(total_amount or 0) }}</p>
                 </div>
@@ -41,6 +55,9 @@
             </div>
             {% endif %}
         </div>
+    </div>
+</main>
+
 
         <!-- Payment Section -->
         <div class="payment-container">

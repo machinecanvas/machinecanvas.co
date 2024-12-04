@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Subscription</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <header>
-        <!-- Include navigation and cart icon if needed -->
-    </header>
+{% extends "base.html" %}
+
+{% block title %}Stock AI Images{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='manage_subscription.css') }}">
+{% endblock %}
+
+{% block content %}
     
     <main>
         <h1>Manage Your Subscription</h1>

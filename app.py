@@ -24,7 +24,8 @@ import logging
 from dotenv import load_dotenv
 from itsdangerous import URLSafeTimedSerializer
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder='static', template_folder='build/templates')
+
 
 # Load environment variables from .env
 load_dotenv()
@@ -33,6 +34,7 @@ load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
 
 # Initialize the serializer with the SECRET_KEY
+
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 # Initialize URLSafeTimedSerializer
