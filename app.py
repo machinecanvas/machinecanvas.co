@@ -209,6 +209,10 @@ class Image(db.Model):
 with app.app_context():
     db.create_all()
 
+@app.route('/health')
+def health_check():
+    return "OK", 200
+
 # Route for Home
 @app.route('/', endpoint='home_page')
 def home_page():
