@@ -3,3 +3,8 @@ node_modules
 .amplify
 amplify_outputs*
 amplifyconfiguration*
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
