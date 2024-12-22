@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from itsdangerous import URLSafeTimedSerializer
 from datetime import datetime, timedelta
+import openai
 import os 
 import uuid
 import re
@@ -522,47 +523,173 @@ def pricing():
     return render_template('pricing.html', plans=plans)
 
 
+# Allowed file extensions
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-from PIL import Image
-import os
-
-def is_ai_image(filepath):
+# Create a full white mask that matches the input image dimensions
+def create_full_image_mask(image_path):
     """
-    A heuristic-based function to check if an image might be AI-generated.
-    Uses basic criteria like file size and image dimensions to make a determination.
-    This method is intended as a temporary solution and may not be highly accurate.
-    
+    Create a white mask with the same dimensions as the input image.
+
     Args:
-        filepath (str): The path to the image file.
+        image_path (str): Path to the input image.
 
     Returns:
-        bool: True if the image is likely AI-generated, False otherwise.
+        str: Path to the generated mask image.
+    """
+    mask_path = os.path.join(os.path.dirname(image_path), "full_mask.png")
+    try:
+        with Image.open(image_path) as img:
+            mask = Image.new("L", img.size, color=255)  # White mask
+            mask.save(mask_path)
+        return mask_path
+    except Exception as e:
+        print(f"Error creating mask: {e}")
+        return None
+
+# Validate if the mask dimensions match the input image dimensions
+def validate_mask_dimensions(image_path, mask_path):
+    """
+    Ensure the mask file matches the dimensions of the input image.
+
+    Args:
+        image_path (str): Path to the input image.
+        mask_path (str): Path to the mask image.
+
+    Returns:
+        bool: True if dimensions match, False otherwise.
     """
     try:
-        # Check file size (e.g., most generative images are larger in size)
-        file_size = os.path.getsize(filepath)
-        if file_size > 2 * 1024 * 1024:  # Example threshold: size > 2MB
-            return True
+        with Image.open(image_path) as img, Image.open(mask_path) as mask:
+            return img.size == mask.size
+    except Exception as e:
+        print(f"Error validating dimensions: {e}")
+        return False
 
-        # Check image dimensions (e.g., common resolutions for generated images)
-        with Image.open(filepath) as img:
-            width, height = img.size
-            # Example dimensions for generated images: divisible by 64 or larger than 1024x1024
-            if (width % 64 == 0 and height % 64 == 0) or (width > 1024 and height > 1024):
-                return True
+# AI-based image conversion function
+def ai_conversion_with_prompt(input_path, output_path, prompt):
+    """
+    Perform AI-based image conversion with a custom user prompt and a full image mask.
+
+    Args:
+        input_path (str): Path to the input image.
+        output_path (str): Path to save the converted image.
+        prompt (str): User-defined prompt.
+
+    Returns:
+        str: URL of the converted image.
+    """
+    openai.api_key = os.getenv('OPENAI_API_KEY')
+    mask_path = None
+
+    try:
+        # Create a white mask for the input image
+        mask_path = create_full_image_mask(input_path)
+        if not mask_path or not validate_mask_dimensions(input_path, mask_path):
+            raise ValueError("Mask dimensions do not match input image dimensions.")
+
+        # Send the input image, mask, and prompt to the OpenAI API
+        with open(input_path, "rb") as image_file, open(mask_path, "rb") as mask_file:
+            response = openai.Image.create_edit(
+                prompt=prompt,
+                image=image_file,
+                mask=mask_file,
+                n=1,
+                size="1024x1024"
+            )
+
+        # Extract and save the converted image
+        image_url = response['data'][0]['url']
+        converted_image = requests.get(image_url).content
+        with open(output_path, "wb") as output_file:
+            output_file.write(converted_image)
+
+        print(f"Converted image saved to {output_path}")
+        return image_url
 
     except Exception as e:
-        # Log any exceptions encountered during the image check
-        print(f"Error processing image for AI detection: {e}")
-        return False  # Assume non-AI if there’s an issue with reading the image
+        print(f"Error during AI conversion: {e}")
+        raise RuntimeError("Failed to convert the image. Please check the logs.")
 
-    # Default to False if no AI-indicative criteria are met
-    return False
+    finally:
+        # Clean up temporary mask
+        if mask_path and os.path.exists(mask_path):
+            os.remove(mask_path)
+
+# Flask route for AI conversion
+@app.route('/AI_convert', methods=['GET', 'POST'])
+def AI_convert():
+    os.makedirs(app.config['TEMP_UPLOAD_FOLDER'], exist_ok=True)
+
+    if 'user_id' not in session:
+        flash('You must be logged in to use the AI conversion feature!', 'danger')
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        file = request.files.get('file')
+        prompt = request.form.get('prompt', '').strip()
+        upload_to_site = request.form.get('upload_to_site', 'no')
+        price = request.form.get('price') if upload_to_site == 'yes' else None
+
+        # Validate file and inputs
+        if not file or not allowed_file(file.filename):
+            return jsonify({"error": "Invalid file format or missing file."}), 400
+
+        if not prompt:
+            return jsonify({"error": "You must provide a prompt for conversion."}), 400
+
+        # Save uploaded file temporarily
+        filename = secure_filename(file.filename)
+        temp_path = os.path.join(app.config['TEMP_UPLOAD_FOLDER'], filename)
+        file.save(temp_path)
+
+        try:
+            # Perform AI conversion
+            converted_path = os.path.join(app.config['TEMP_UPLOAD_FOLDER'], f"converted_{filename}")
+            converted_image_url = ai_conversion_with_prompt(temp_path, converted_path, prompt)
+
+            # Save converted image to permanent location
+            unique_converted_path = os.path.join(app.config['UPLOAD_FOLDER'], f"converted_{filename}")
+            os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+            counter = 1
+            while os.path.exists(unique_converted_path):
+                unique_converted_path = os.path.join(
+                    app.config['UPLOAD_FOLDER'],
+                    f"converted_{os.path.splitext(filename)[0]}_{counter}{os.path.splitext(filename)[1]}"
+                )
+                counter += 1
+
+            os.rename(converted_path, unique_converted_path)
+
+            # Save to the database if uploading to the website
+            if upload_to_site == 'yes' and price:
+                cursor = mysql.connection.cursor()
+                cursor.execute(
+                    'INSERT INTO images (filename, category, price, user_id) VALUES (%s, %s, %s, %s)',
+                    (os.path.basename(unique_converted_path), "custom", price, session['user_id'])
+                )
+                mysql.connection.commit()
+
+            return jsonify({"converted_image_url": url_for('static', filename=f"uploads/{os.path.basename(unique_converted_path)}")})
+
+        except Exception as e:
+            print(f"AI Conversion Error: {e}")
+            return jsonify({"error": "An error occurred during conversion. Please try again."}), 500
+
+        finally:
+            # Clean up temporary file
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+
+    return render_template('AI_convert.html', user_id=session.get('user_id'))
 
 
-from werkzeug.utils import secure_filename
-import os
 
+
+# Upload Route
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_image():
     os.makedirs(app.config['TEMP_UPLOAD_FOLDER'], exist_ok=True)
@@ -583,25 +710,13 @@ def upload_image():
             flash('Please complete all fields and use a valid file type.', 'danger')
             return redirect(url_for('upload_image'))
 
-        # Secure file saving paths
         filename = secure_filename(file.filename)
         temp_path = os.path.join(app.config['TEMP_UPLOAD_FOLDER'], filename)
-        upload_path = os.path.join(app.config['UPLOAD_FOLDER'], category)
-        final_path = os.path.join(upload_path, filename)
-        os.makedirs(upload_path, exist_ok=True)
+        file.save(temp_path)
 
+        cursor = mysql.connection.cursor()
         try:
-            # Save the file temporarily
-            file.save(temp_path)
-
-            # Check AI validation
-            if not is_ai_image(temp_path):
-                os.remove(temp_path)  # Clean up temp file
-                flash('Only AI-generated images are allowed.', 'danger')
-                return redirect(url_for('upload_image'))
-
-            # Check subscription details if not unlimited credits
-            cursor = mysql.connection.cursor()
+            # Fetch user's subscription details if not using unlimited credits
             if not unlimited_credits:
                 cursor.execute("""
                     SELECT upload_limit, uploads_this_month, credits_remaining 
@@ -615,63 +730,75 @@ def upload_image():
                     credits_remaining = user_subscription.get('credits_remaining', 0)
 
                     if uploads_this_month >= upload_limit:
-                        os.remove(temp_path)  # Clean up temp file
+                        if os.path.exists(temp_path):
+                            os.remove(temp_path)
                         flash('You have reached your upload limit for this month.', 'danger')
                         return redirect(url_for('upload_image'))
 
                     if credits_remaining <= 0:
-                        os.remove(temp_path)  # Clean up temp file
+                        if os.path.exists(temp_path):
+                            os.remove(temp_path)
                         flash('Need credits to upload. Please visit the pricing page.', 'danger')
                         return redirect(url_for('upload_image'))
 
-            # Ensure unique filename
-            counter = 1
-            while os.path.exists(final_path):
-                final_path = os.path.join(upload_path, f"{os.path.splitext(filename)[0]}_{counter}{os.path.splitext(filename)[1]}")
-                counter += 1
+            # Check if file is AI-generated using the placeholder function
+            if is_ai_image(temp_path):
+                category_folder = os.path.join(app.config['UPLOAD_FOLDER'], category)
+                os.makedirs(category_folder, exist_ok=True)
+                final_path = os.path.join(category_folder, filename)
 
-            # Move file to final location
-            os.rename(temp_path, final_path)
+                # Check if destination file exists, and create a unique filename if necessary
+                if os.path.exists(final_path):
+                    filename, ext = os.path.splitext(filename)
+                    counter = 1
+                    while os.path.exists(final_path):
+                        final_path = os.path.join(category_folder, f"{filename}_{counter}{ext}")
+                        counter += 1
 
-            # Insert image details into the database
-            cursor.execute(
-                'INSERT INTO images (filename, category, price, user_id) VALUES (%s, %s, %s, %s)',
-                (os.path.basename(final_path), category, price, user_id)
-            )
-            mysql.connection.commit()
-            image_id = cursor.lastrowid  # Retrieve last inserted image ID
+                # Rename temp_path to final_path
+                os.rename(temp_path, final_path)
 
-            # Apply watermark
-            try:
-                add_watermark(final_path, watermark_text="Your Watermark Text")
-            except Exception as e:
-                print(f"Watermarking failed: {e}")
-                flash('An error occurred while adding the watermark.', 'warning')
+                # Insert image details into the database and get the image ID
+                cursor.execute(
+                    'INSERT INTO images (filename, category, price, user_id) VALUES (%s, %s, %s, %s)',
+                    (os.path.basename(final_path), category, price, user_id)
+                )
+                cursor.execute('SELECT LAST_INSERT_ID() AS image_id')
+                image_id = cursor.fetchone()['image_id']
 
-            # Update subscription details if applicable
-            if not unlimited_credits:
-                cursor.execute("""
-                    UPDATE user_subscriptions 
-                    SET uploads_this_month = uploads_this_month + 1, 
-                        credits_remaining = credits_remaining - 1
-                    WHERE user_id = %s
-                """, (user_id,))
+                # Call add_watermark function after saving the image
+                try:
+                    add_watermark(final_path, watermark_text="Your Watermark Text")
+                except Exception as e:
+                    print(f"Watermarking failed: {e}")
+                    flash('An error occurred while adding the watermark.', 'warning')
+
+                # Update uploads this month and deduct one credit only if not unlimited credits
+                if not unlimited_credits:
+                    cursor.execute("""
+                        UPDATE user_subscriptions 
+                        SET uploads_this_month = uploads_this_month + 1, 
+                            credits_remaining = credits_remaining - 1,
+                            upload_limit = upload_limit - 1 
+                        WHERE user_id = %s
+                    """, (user_id,))
+
                 mysql.connection.commit()
-
-            flash('AI-generated image uploaded successfully!', 'success')
-            return redirect(url_for('category_page', category_name=category))
-
+                flash('AI-generated image uploaded successfully!', 'success')
+                return redirect(url_for('category_page', category_name=category))
+            else:
+                if os.path.exists(temp_path):
+                    os.remove(temp_path)
+                flash('Only AI-generated images are allowed.', 'danger')
         except Exception as e:
-            print(f"Upload Error: {e}")
-            flash('An error occurred. Please try again.', 'danger')
-        finally:
-            if os.path.exists(temp_path):  # Clean up temp file
+            if os.path.exists(temp_path):
                 os.remove(temp_path)
-            if 'cursor' in locals():
-                cursor.close()
+            flash('An error occurred. Please try again.', 'danger')
+            print(f"Upload Error: {e}")
+        finally:
+            cursor.close()
 
     return render_template('upload.html', user_id=user_id)
-
 
 
 from PIL import Image, ImageDraw, ImageFont

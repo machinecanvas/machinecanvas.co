@@ -10,70 +10,72 @@
 <div class="container">
     <h1>Image Upload</h1>
 
-    <!-- Flash Message Placeholder and Content -->
+    <!-- Flash Message Placeholder -->
     <div id="flashMessage" class="alert" style="display: none;"></div>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-      <div id="flashMessageTrigger" style="display: none;"></div>
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          document.getElementById("flashMessage").innerHTML = `
-            {% for category, message in messages %}
-              <div class="alert alert-{{ category }}">{{ message }}</div>
-            {% endfor %}
-          `;
-          showFlashMessage();
-        });
-      </script>
+        <div id="flashMessageTrigger" style="display: none;"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("flashMessage").innerHTML = `
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                `;
+                showFlashMessage();
+            });
+        </script>
     {% endif %}
     {% endwith %}
+
+    <!-- Available Credits Display -->
+    <div class="credits-display mb-3">
+        <p>Credits Remaining: <span id="creditsCount">{{ credits }}</span></p>
+    </div>
 
     <div class="upload-container">
         <div class="form-preview-wrapper">
             <!-- Form Section -->
             <div class="form-container">
                 <form id="uploadForm" action="{{ url_for('upload_image') }}" method="POST" enctype="multipart/form-data">
+                    <!-- File Input -->
                     <div class="mb-3">
                         <label for="file" class="form-label">Upload Your Image:</label>
-                        <input type="file" id="file" name="file" class="form-control" accept="image/*" required onchange="previewImage()">
-                        <small class="form-text">Click to select and upload your image (JPEG, PNG, etc.).</small>
+                        <input type="file" id="file" name="file" class="form-control" accept="image/*" required onchange="previewImage(); checkFileSize(this);">
+                        <small class="form-text">Click to select and upload your image (JPEG, PNG, etc.). Max size: 5MB.</small>
                     </div>
+                    
+                    <!-- Category Selection -->
                     <div class="mb-3">
                         <label for="category" class="form-label">Select Category:</label>
                         <select id="category" name="category" class="form-control" required>
                             <option value="" disabled selected>Select category that suits the image</option>
-                            <option value="abstract">Abstract</option>
-                            <option value="nature">Nature</option>
-                            <option value="animals">Animals</option>
-                            <option value="technology">Technology</option>
-                            <option value="people">People</option>
-                            <option value="architecture">Architecture</option>
-                            <option value="art_design">Art & Design</option>
-                            <option value="business">Business</option>
-                            <option value="fashion">Fashion</option>
-                            <option value="food_drink">Food & Drink</option>
-                            <option value="vehicles">Vehicles</option>
-                            <option value="home_decor">Home/Decor</option>
-                            <option value="sports">Sports</option>
-                            <option value="world">World</option>
-                            <option value="history">History</option>
-                            <option value="finance">Finance</option>
-                            <option value="animated">Animated</option>
-                            <option value="miscellaneous">Miscellaneous</option>
+                            {% for category in categories %}
+                                <option value="{{ category }}">{{ category | capitalize }}</option>
+                            {% endfor %}
                         </select>
                         <small class="form-text">Choose the category that best matches your image.</small>
                     </div>
+
+                    <!-- Price Input -->
                     <div class="mb-3">
                         <label for="price" class="form-label">Set Price ($):</label>
                         <input type="number" id="price" name="price" class="form-control" min="1" required>
                         <small class="form-text">Enter the selling price for the image.</small>
                     </div>
+
+                    <!-- Submit Button -->
                     <button type="submit" class="upload-button">Upload</button>
+
+                    <!-- Upload Progress Bar -->
+                    <div id="progressContainer" class="progress mt-3" style="display: none;">
+                      <div id="uploadProgress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </form>
             </div>
 
-            <!-- Preview Section with Borders -->
+            <!-- Preview Section -->
             <div class="preview">
                 <div class="preview-container">
                     <div id="imagePlaceholder" class="image-placeholder">
@@ -86,7 +88,24 @@
     </div>
 </div>
 
-<!-- JavaScript directly in the HTML -->
+<!-- Modal for Insufficient Credits -->
+<div class="modal fade" id="creditsModal" tabindex="-1" aria-labelledby="creditsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="creditsModalLabel">Need More Credits</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You don't have enough credits to upload this image. Please <a href="{{ url_for('pricing') }}">purchase more credits</a> to continue.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
     function showFlashMessage() {
         const flashMessage = document.getElementById("flashMessage");
@@ -115,9 +134,74 @@
             imagePlaceholder.style.display = "flex";
         }
     }
-</script>
-<script>
-    // Function to fetch the cart count and update the cart icon
+
+    function checkFileSize(input) {
+        const file = input.files[0];
+        if (file && file.size > 5 * 1024 * 1024) { // Limit: 5MB
+            alert('File size exceeds the 5MB limit. Please choose a smaller file.');
+            input.value = '';
+            previewImage();
+        }
+    }
+
+    // Handle Form Submission with Upload Progress
+    document.getElementById('uploadForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Check for sufficient credits before proceeding
+        const credits = parseInt(document.getElementById('creditsCount').textContent);
+        if (credits <= 0) {
+            showCreditsModal();
+            return;
+        }
+
+        const form = e.target;
+        const formData = new FormData(form);
+        const progressBar = document.getElementById('uploadProgress');
+        const progressContainer = document.getElementById('progressContainer');
+
+        progressContainer.style.display = 'block';
+
+        const xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action, true);
+
+        xhr.upload.onprogress = function (event) {
+            if (event.lengthComputable) {
+                const percentComplete = Math.round((event.loaded / event.total) * 100);
+                progressBar.style.width = percentComplete + '%';
+                progressBar.textContent = percentComplete + '%';
+            }
+        };
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                progressBar.style.width = '100%';
+                progressBar.textContent = 'Upload Complete';
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                    progressBar.style.width = '0%';
+                    window.location.href = '{{ url_for("profile_images") }}'; // Redirect after successful upload
+                }, 1000);
+            } else {
+                progressBar.style.width = '0%';
+                alert('Upload failed. Please try again.');
+            }
+        };
+
+        xhr.onerror = function () {
+            progressBar.style.width = '0%';
+            alert('An error occurred while uploading the file.');
+        };
+
+        xhr.send(formData);
+    });
+
+    function showCreditsModal() {
+        const creditsModal = new bootstrap.Modal(document.getElementById('creditsModal'));
+        creditsModal.show();
+    }
+
+    // Fetch cart count and update the cart icon
     function updateCartCount() {
         fetch('/cart_count')
             .then(response => response.json())
@@ -136,14 +220,6 @@
     document.addEventListener('DOMContentLoaded', updateCartCount);
 </script>
 
-
-
 <!-- Bootstrap JS and Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
 {% endblock %}
-
-
-
-
-

@@ -1,0 +1,297 @@
+/* Extra Styling for Available Credits and Manage Subscription Sections */
+.available-credits, .manage-subscription {
+    text-align: center;
+}
+
+.available-credits p, .manage-subscription p {
+    font-size: 16px;
+    color: #d3d3d3; /* Light grey for text */
+}
+
+/* Form Container Styling */
+.upload-container {
+    background-color: #2c2c2c; /* Slightly lighter black background */
+    border: 2px solid white; /* White border for contrast */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Inner padding for spacing */
+    max-width: 800px; /* Restrict max width for better layout */
+    margin: 30px auto; /* Center the container */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    gap: 10%; /* Add 10% space between elements */
+}
+
+/* Preview container with consistent aspect ratio */
+.preview-container {
+    border: 2px solid white; /* White border for preview */
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #2c2c2c; /* Match container background */
+    max-width: 400px; /* Increased width */
+    max-height: 400px; /* Increased height */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensures the image doesn't overflow the container */
+}
+
+/* Styling for the image within the preview box */
+.preview-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Layout adjustment for horizontal alignment */
+.form-preview-wrapper {
+    display: flex; /* Align form and preview horizontally */
+    gap: 10%; /* Add 10% space between placeholders */
+    align-items: stretch; /* Ensure form and preview match height */
+}
+
+/* Ensure the form takes up some width */
+.form-container {
+    flex: 1;
+    max-width: 50%;
+}
+
+/* Preview Section Styling */
+.preview {
+    flex: 1;
+    text-align: center;
+    max-width: 50%;
+}
+
+/* Upload Image to Website Section */
+.form-check {
+    background-color: #2c2c2c; /* Match container background */
+    padding: 10px;
+    border: 2px solid #2c2c2c;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.form-check-label {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+input[type="radio"].form-check-input {
+    accent-color: #007bff;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+input[type="radio"].form-check-input:checked {
+    box-shadow: 0 0 5px #007bff;
+}
+
+small.form-text {
+    color: #ffffff;
+    font-size: 0.85rem;
+}
+
+/* Image Placeholder */
+.image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #555;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #050505;
+    font-size: 1em;
+}
+
+/* Form elements */
+form {
+    width: 100%;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #0e0d0d;
+    margin-bottom: 10%; /* Add 10% space between form inputs */
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-text {
+    color: #000000;
+}
+
+/* Buttons */
+.upload-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+    background-color: #0056b3;
+}
+
+/* Pop-Up Notification Container */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Pop-Up Content Box */
+.popup-content {
+    background-color: #2c2c2c;
+    border-radius: 8px;
+    padding: 20px;
+    width: auto;
+    max-width: 80%;
+    color: white;
+}
+
+/* Pop-Up Header */
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 15px;
+}
+
+.popup-header h5 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.popup-close:hover {
+    color: #ccc;
+}
+
+/* Pop-Up Body */
+.popup-body {
+    padding: 10px 0;
+}
+
+.popup-image {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Pop-Up Footer */
+.popup-footer {
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Progress bar styling */
+.progress {
+    height: 20px;
+    border-radius: 8px;
+    background-color: #e9ecef;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    background-color: #28a745;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+    transition: width 0.4s ease;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-preview-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .preview-container {
+        max-width: 150px;
+        max-height: 150px;
+    }
+
+    .image-placeholder, .preview img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .progress {
+        height: 15px;
+    }
+
+    .progress-bar {
+        font-size: 0.8rem;
+    }
+
+    .popup-content {
+        margin: 10px;
+        width: 90%;
+    }
+
+    .popup-image {
+        max-height: 50vh;
+    }
+}
