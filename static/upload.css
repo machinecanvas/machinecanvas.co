@@ -9,7 +9,6 @@
 }
 
 /* Container for image preview with a white border */
-
 .preview-container {
     border: 2px solid white;
     padding: 10px;
@@ -21,8 +20,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
- }
-
+}
 
 /* Form and preview layout */
 .form-preview-wrapper {
@@ -63,7 +61,6 @@
     color: #888;
     font-size: 1em;
 }
-
 
 /* Preview image styling */
 .preview img {
@@ -178,3 +175,78 @@ footer p {
     }
 }
 
+/* New Styles Added Below */
+
+/* Flash message styling */
+.alert {
+    margin-top: 10px;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* Progress bar styling */
+.progress {
+    height: 20px;
+    border-radius: 8px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    background-color: #28a745;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+}
+
+/* Modal styling */
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+    color: #333;
+    font-weight: bold;
+}
+
+.modal-body {
+    color: #555;
+    font-size: 1rem;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-preview-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .credits-display {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .image-placeholder, .preview img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .progress {
+        height: 15px;
+    }
+
+    .progress-bar {
+        font-size: 0.8rem;
+    }
+}
