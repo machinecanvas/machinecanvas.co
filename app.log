@@ -8723,3 +8723,30 @@ werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'manage
 2024-12-29 23:30:22,028 - INFO - 127.0.0.1 - - [29/Dec/2024 23:30:22] "[36mGET /static/AI_convert.css HTTP/1.1[0m" 304 -
 2024-12-29 23:30:22,080 - INFO - 127.0.0.1 - - [29/Dec/2024 23:30:22] "GET /AI_convert HTTP/1.1" 200 -
 2024-12-29 23:30:22,092 - INFO - 127.0.0.1 - - [29/Dec/2024 23:30:22] "GET /cart_count HTTP/1.1" 200 -
+2025-01-01 14:59:00,944 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-01 14:59:00,948 - INFO - [33mPress CTRL+C to quit[0m
+2025-01-01 14:59:00,950 - INFO -  * Restarting with stat
+2025-01-01 14:59:03,210 - WARNING -  * Debugger is active!
+2025-01-01 14:59:03,215 - INFO -  * Debugger PIN: 493-418-424
+2025-01-01 14:59:05,207 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "GET / HTTP/1.1" 200 -
+2025-01-01 14:59:05,431 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/abstract.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,436 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,440 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/nature.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,441 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/technology.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,447 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/people.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,464 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/architecture.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,468 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/art_design.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,474 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/fashion.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,474 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/food_drink.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,476 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/business.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,495 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/vehicles.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,503 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/home_decor.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,506 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/animated.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,507 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/sports.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,513 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/world.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,524 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/history.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,528 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/MACHINE.png HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,535 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "GET /cart_count HTTP/1.1" 200 -
+2025-01-01 14:59:05,547 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/finance.webp HTTP/1.1[0m" 304 -
+2025-01-01 14:59:05,560 - INFO - 127.0.0.1 - - [01/Jan/2025 14:59:05] "[36mGET /static/uploads/index_images/miscellaneous.webp HTTP/1.1[0m" 304 -
