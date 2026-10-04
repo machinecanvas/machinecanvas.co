@@ -15,6 +15,7 @@ Inputs (see static/uploads/wall_printer/rail/):
 
 Usage:
     python scripts/wall_printer_rail.py static/uploads/wall_printer/rail OUTPUT.mp4
+    python scripts/wall_printer_rail.py static/uploads/wall_printer/home OUTPUT.mp4 --scene home
 
 Requires Pillow, numpy and ffmpeg on PATH.
 """
@@ -27,12 +28,19 @@ from PIL import Image, ImageFilter
 
 W, H = 1920, 1080
 FPS = 30
-PANEL = (723, 206, 1468, 781)  # printable area inside the frame: x0, y0, x1, y1
-FLOOR_Y = 995  # where the printer's wheels touch down
-PRINTER_H = 790  # printer height in pixels
 SPRITE_MAST_X = 122  # left edge of the mast in printer.png
 HEAD_BOX_FRAC = 0.78  # print box part of head.png (the rest is the bracket)
-SWATH = 48  # strip printed per pass, px (= print box width)
+
+# Per-scene layout, measured on each plate_1080.jpg.
+SCENES = {
+    # Hotel lobby: print into a framed white panel.
+    "lobby": dict(panel=(723, 206, 1468, 781), floor_y=995, printer_h=790, swath=48,
+                  park=1.4, wall_bottom=960, plain_wall=False),
+    # Home: print straight onto a plain painted wall, no frame.
+    "home": dict(panel=(685, 290, 1339, 781), floor_y=949, printer_h=694, swath=42,
+                 park=1.2, wall_bottom=880, plain_wall=True),
+}
+PANEL, FLOOR_Y, PRINTER_H, SWATH, PARK, WALL_BOTTOM, PLAIN_WALL = (723, 206, 1468, 781), 995, 790, 48, 1.4, 960, False
 PASS_FRAMES = 14
 STEP_FRAMES = 5
 START_HOLD = 20
@@ -44,28 +52,52 @@ def ease(t):
     return t * t * (3 - 2 * t)
 
 
-def load_assets(d):
+def load_assets(d, sprites):
     plate = np.asarray(Image.open(os.path.join(d, "plate_1080.jpg")).convert("RGB"), np.float32)
-    printer = Image.open(os.path.join(d, "printer.png")).convert("RGBA")
+    printer = Image.open(os.path.join(sprites, "printer.png")).convert("RGBA")
     s = PRINTER_H / printer.height
     printer = printer.resize((round(printer.width * s), PRINTER_H), Image.LANCZOS)
     mast_x = SPRITE_MAST_X * s
-    head = Image.open(os.path.join(d, "head.png")).convert("RGBA")
+    head = Image.open(os.path.join(sprites, "head.png")).convert("RGBA")
     hs = SWATH / (head.width * HEAD_BOX_FRAC)
     head = head.resize((round(head.width * hs), round(head.height * hs)), Image.LANCZOS)
 
     x0, y0, x1, y1 = PANEL
-    ink = Image.open(os.path.join(d, "mural_4x3.jpg")).convert("RGB")
+    ink = Image.open(os.path.join(d if os.path.exists(os.path.join(d, "mural_4x3.jpg")) else sprites, "mural_4x3.jpg")).convert("RGB")
     # Cover-fit the artwork to the panel.
     pw, ph = x1 - x0, y1 - y0
     k = max(pw / ink.width, ph / ink.height)
     ink = ink.resize((round(ink.width * k), round(ink.height * k)), Image.LANCZOS)
     cx, cy = (ink.width - pw) // 2, (ink.height - ph) // 2
     ink = np.asarray(ink.crop((cx, cy, cx + pw, cy + ph)), np.float32)
-    # Ink sits on the panel: multiply by the panel's own lighting.
     panel = plate[y0:y1, x0:x1]
     printed = plate.copy()
-    printed[y0:y1, x0:x1] = ink * np.clip(panel / 242.0, 0, 1.05)
+    if PLAIN_WALL:
+        # Printed straight onto the wall: drop the artwork's own plaster margin so
+        # only the window is inked, and tint it with the wall's colour and light.
+        edge = np.concatenate([ink[:6].reshape(-1, 3), ink[-6:].reshape(-1, 3), ink[:, :6].reshape(-1, 3), ink[:, -6:].reshape(-1, 3)])
+        bg = np.median(edge, 0)
+        alpha = np.clip((np.abs(ink - bg).sum(-1) - 45) / 40, 0, 1)
+        # Keep only the window itself: ignore lines along the artwork's outer edge
+        # and fade out its margin.
+        by, bx = int(alpha.shape[0] * 0.015), int(alpha.shape[1] * 0.012)
+        alpha[:by], alpha[-by:], alpha[:, :bx], alpha[:, -bx:] = 0, 0, 0, 0
+        rows = np.where((alpha > 0.5).mean(1) > 0.3)[0]
+        cols = np.where((alpha > 0.5).mean(0) > 0.3)[0]
+        keep = np.zeros(alpha.shape, np.float32)
+        keep[rows[0]:rows[-1] + 1, cols[0]:cols[-1] + 1] = 1
+        keep = np.asarray(Image.fromarray((keep * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(4)), np.float32) / 255
+        # Inside the window's bounds use a softer key so pale parts (the header
+        # beam, sill highlights) and the painted shadows print in full.
+        soft = np.clip((np.abs(ink - bg).sum(-1) - 18) / 30, 0, 1)
+        soft[:by], soft[-by:], soft[:, :bx], soft[:, -bx:] = 0, 0, 0, 0
+        alpha = np.maximum(alpha, soft) * keep
+        alpha = np.asarray(Image.fromarray((alpha * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.5)), np.float32)[..., None] / 255
+        inked = ink * panel / np.maximum(bg, 1)
+        printed[y0:y1, x0:x1] = panel * (1 - alpha) + inked * alpha
+    else:
+        # Ink sits on the panel: multiply by the panel's own lighting.
+        printed[y0:y1, x0:x1] = ink * np.clip(panel / 242.0, 0, 1.05)
     return plate, printed, printer, mast_x, head
 
 
@@ -87,7 +119,7 @@ def timeline():
             for f in range(STEP_FRAMES):
                 frames.append(dict(pos=s + ease((f + 1) / STEP_FRAMES), hy=hy, strip=None))
     last = float(n - 1)
-    park = last + 1.4  # right-hand end of the floor rail
+    park = last + PARK  # right-hand end of the floor rail
     for f in range(EXIT_FRAMES):
         frames.append(dict(pos=last + (park - last) * ease((f + 1) / EXIT_FRAMES), hy=hy, strip=None))
     for _ in range(END_HOLD):
@@ -97,12 +129,18 @@ def timeline():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("assets")
+    ap.add_argument("assets", help="scene folder with plate_1080.jpg (and optionally mural_4x3.jpg)")
     ap.add_argument("output")
+    ap.add_argument("--scene", choices=sorted(SCENES), default="lobby")
+    ap.add_argument("--sprites", default="static/uploads/wall_printer/rail", help="folder with printer.png, head.png")
     ap.add_argument("--stills", help="comma-separated frame numbers to save as JPEGs")
     args = ap.parse_args()
+    global PANEL, FLOOR_Y, PRINTER_H, SWATH, PARK, WALL_BOTTOM, PLAIN_WALL
+    sc = SCENES[args.scene]
+    PANEL, FLOOR_Y, PRINTER_H, SWATH = sc["panel"], sc["floor_y"], sc["printer_h"], sc["swath"]
+    PARK, WALL_BOTTOM, PLAIN_WALL = sc["park"], sc["wall_bottom"], sc["plain_wall"]
 
-    plate, printed, printer, mast_x, head = load_assets(args.assets)
+    plate, printed, printer, mast_x, head = load_assets(args.assets, args.sprites)
     x0, y0, x1, y1 = PANEL
     frames, n = timeline()
     stills = {int(i) for i in args.stills.split(",")} if args.stills else None
@@ -152,7 +190,7 @@ def main():
         sh = Image.new("L", (W, H), 0)
         sh.paste(shadow_src, (px + 16, py + 22))
         sh_a = np.asarray(sh, np.float32)[..., None] / 255 * 0.28
-        sh_a[960:] = 0
+        sh_a[WALL_BOTTOM:] = 0
         base = np.asarray(img, np.float32)
         base[..., :3] *= 1 - sh_a
         # Contact shadow under the printer on the floor.
